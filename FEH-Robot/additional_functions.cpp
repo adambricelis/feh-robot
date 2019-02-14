@@ -4,7 +4,7 @@
 #include <FEHMotor.h>
 #include <FEHServo.h>
 #include "drive.h"
-#include "object_constants.h"
+#include "objects_constants.h"
 #include "additional_functions.h"
 
 int detectColor(){
@@ -14,5 +14,5 @@ int detectColor(){
 }
 
 void waitToStart(){
-	
+
 }

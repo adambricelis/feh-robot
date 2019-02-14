@@ -1,22 +1,17 @@
 #include <FEHLCD.h>
 #include <FEHIO.h>
 #include <FEHUtility.h>
+#include <FEHMotor.h>
+#include <FEHServo.h>
+#include "drive.h"
+#include "objects_constants.h"
+#include "tasks.h"
+#include "additional_functions.h"
 
 int main(void)
 {
 
-    float x,y;
+    waitToStart();
 
-    LCD.Clear( FEHLCD::Black );
-    LCD.SetFontColor( FEHLCD::White );
-
-    while( true )
-    {
-        if( LCD.Touch(&x,&y) )
-        {
-            LCD.WriteLine( "Hello World!" );
-            Sleep( 100 );
-        }
-    }
     return 0;
 }
