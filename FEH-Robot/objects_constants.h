@@ -7,6 +7,9 @@
 #include <FEHMotor.h>
 #include <FEHServo.h>
 
+//time limits
+const float START_WAIT = 35.0;
+
 //color values
 const float BLUE_MIN = 0.61;
 const float BLUE_MAX = 1.30;

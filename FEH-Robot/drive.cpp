@@ -4,8 +4,15 @@
 #include <FEHUtility.h>
 #include <FEHMotor.h>
 
-void driveStraight(float power){
-	//gyro, PID??
+void tankDrive(float left, float right){
+	leftMotor.SetPercent(left);
+	rightMotor.SetPercent(right);
+}
+
+void driveStraightCount(float power, int counts){
+	    while(leftEncoder.Counts() + rightEncoder.Counts() / 0.2 < counts){
+        tankDrive(power, power);
+      }
 }
 
 void driveToCollision(float left, float right, int switchID){
@@ -33,9 +40,4 @@ void driveToCollision(float left, float right, int switchID){
 			rightMotor.SetPercent(right);
 		}
 	}
-}
-
-void tankDrive(float left, float right){
-	leftMotor.SetPercent(left);
-	rightMotor.SetPercent(right);
 }

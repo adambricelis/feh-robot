@@ -10,8 +10,15 @@
 
 int main(void)
 {
-
+    LCD.Clear(WHITE);
+    LCD.SetFontColor(BLACK);
+    LCD.WriteLine("Press to start");
+    
     waitToStart();
+    /*
+    For performance test 1, drive to upper level, press lever,
+    drive back down
+    */
 
     return 0;
 }
