@@ -8,8 +8,10 @@
 #include <FEHServo.h>
 
 //color values
-const float BLUE_MIN = 0;
-const float RED_MIN = 0;
+const float BLUE_MIN = 0.61;
+const float BLUE_MAX = 1.30;
+const float RED_MIN = 0.00;
+const float RED_MAX = 0.60
 
 //switch IDs
 const int FRONT_LEFT_SW = 1;
