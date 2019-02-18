@@ -10,6 +10,13 @@
 // Time limits
 const float START_WAIT = 35.0;
 
+// IGWAN encoder counts per inch traveled
+// TODO: update to account for larger wheels
+const float ENCODER_COUNTS_PER_INCH = 30;
+// IGWAN encoder counts per 90 degree turn
+// TODO: update to account for larger wheels
+const float ENCODER_COUNTS_PER_DEGREE = 10;
+
 // Light color enum
 enum LightColor {
     RedLight,

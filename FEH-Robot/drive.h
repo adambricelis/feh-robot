@@ -1,11 +1,18 @@
 #ifndef DRIVE_H
 #define DRIVE_H
 
-//use gyro, PID ??
-void driveStraight(int power);
+#include "objects_constants.h"
 
-void driveToCollision(int left, int right, int switchID);
+void setMotors(float, float);
 
-void tankDrive(int left, int right);
+void stopMotors();
+
+void resetEncoders();
+
+void driveForDistance(float, float);
+
+void turn(float, bool, int);
+
+void driveToCollision(float, bool, bool);
 
 #endif

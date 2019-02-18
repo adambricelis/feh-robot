@@ -16,5 +16,6 @@ int main(void)
     drive back down
     */
 
+    LCD.WriteLine("Done!");
     return 0;
 }

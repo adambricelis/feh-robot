@@ -2,6 +2,7 @@
 #define ADDITIONAL_FUNCTIONS_H
 
 void startRun();
+
 LightColor colorDetected();
 
 #endif
