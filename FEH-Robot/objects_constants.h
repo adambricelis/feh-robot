@@ -7,41 +7,50 @@
 #include <FEHMotor.h>
 #include <FEHServo.h>
 
-//time limits
+// Time limits
 const float START_WAIT = 35.0;
 
-//color values
-const float BLUE_MIN = 0.61;
-const float BLUE_MAX = 1.30;
-const float RED_MIN = 0.00;
-const float RED_MAX = 0.60
+// Light color enum
+enum LightColor {
+    RedLight,
+    BlueLight,
+    NoLight
+};
 
-//switch IDs
-const int FRONT_LEFT_SW = 1;
-const int FRONT_RIGHT_SW = 2;
-const int BACK_LEFT_SW = 3;
-const int BACK_RIGHT_SW = 4;
+// Light color voltage values
+const float RED_LIGHT = 0.267;
+const float BLUE_LIGHT = 0.952;
+const float NO_LIGHT = 3.205;
+// Error bound for light measurement values
+const float LIGHT_EPSILON = 0.30;
 
-//motor, servo values
+// Microswitch ids
+enum Switch {
+    FrontLeftSwitch,
+    FrontRightSwitch,
+    BackLeftSwitch,
+    BackRightSwitch
+};
+
+// Servo arm values
+// TODO: fix this stuff
 const int TOKEN_DOWN = 0;
 const int LEVER_DOWN = 0;
 const int FOOS_DOWN = 0;
 
-
-//motors
+// Motors
 extern FEHMotor leftMotor;
 extern FEHMotor rightMotor;
 extern FEHServo rotateServo;
 extern FEHServo bendServo;
 
-//sensors
+// Sensors
 extern DigitalEncoder leftEncoder;
 extern DigitalEncoder rightEncoder;
-extern DigitalInputPin microFrontLeft;
-extern DigitalInputPin microFrontRight;
-extern DigitalInputPin microBackLeft;
-extern DigitalInputPin microBackRight;
+extern DigitalInputPin frontLeftSwitch;
+extern DigitalInputPin frontRightSwitch;
+extern DigitalInputPin backLeftSwitch;
+extern DigitalInputPin backRightSwitch;
 extern AnalogInputPin cds;
-
 
 #endif

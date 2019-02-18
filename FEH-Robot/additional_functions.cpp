@@ -6,30 +6,49 @@
 #include "drive.h"
 #include "objects_constants.h"
 #include "additional_functions.h"
+#include "math.h"
 
-int detectColor(){
-    int color = 0;
+/**
+ * Starts run after user to presses LCD and start light turns on.
+ */
+void startRun(){
+    // Prompts user to press LCD to start
+    LCD.Clear(WHITE);
+    LCD.SetFontColor(BLACK);
+    LCD.WriteLine("Press to start.");
 
-    if(cds.Value() >= RED_MIN && cds.Value() <= RED_MAX){
-      color = 1;
-      LCD.SetFontColor(RED);
-      LCD.WriteLine(cds.Value() +  " = RED");
-    }
-    else if(cds.Value() >= BLUE_MIN && cds.Value() <= BLUE_MAX){
-      color = 2;
-      LCD.SetFontColor(BLUE);
-      LCD.WriteLine(cds.Value() +  " = BLUE");
-    }
-    return color;
+    // Waits for user to press LCD
+    float x, y;
+    while(!LCD.Touch(&x, &y));
+
+    // Waits for start light
+    while(colorDetected() != RedLight);
+
+    // Starts run
+    LCD.Clear(BLACK);
+    LCD.SetFontColor(WHITE);
+    LCD.WriteLine("Starting now!");
 }
 
-void waitToStart(){
-    float x, y;
-    while(LCD.Touch(&x, &y));
-    while(!LCD.Touch(&x, &y));
-    while(LCD.Touch(&x,&y));
-    float timeStart = TimeNow();
-    while(detectColor() != 1 && (TimeNow()-timeStart) < START_WAIT);
-    LCD.SetFontColor(BLACK);
-    LCD.WriteLine("starting now");
+/**
+ * Determines the color detected by the CdS cell.
+ * @return 0 for no light, 1 for red light, 2 for blue light
+ */
+LightColor colorDetected(){
+    LightColor color;
+
+    // Compares sensor values to LightColor enum values
+    if(abs(cds.Value() - RED_LIGHT) < LIGHT_EPSILON){
+      color = RedLight;
+      LCD.WriteLine("Red");
+    }
+    else if(abs(cds.Value() - BLUE_LIGHT) < LIGHT_EPSILON){
+        color = BlueLight;
+        LCD.WriteLine("Blue");
+    } else {
+        color = NoLight;
+        LCD.WriteLine("No light");
+    }
+
+    return color;
 }
