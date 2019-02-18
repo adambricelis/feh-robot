@@ -1,1 +1,9 @@
+additional_functions.cpp
+additional_functions.h
+drive.cpp
+drive.h
+objects_constants.cpp
+objects_constants.h
+tasks.cpp
+tasks.h
 main.cpp
