@@ -29,9 +29,9 @@ void setMotors(float left, float right) {
  */
 void setMotorsWithDirection(float left, float right, bool direction) {
     if (direction) {
-        setMotors(motorPercent, motorPercent);
+        setMotors(left, right);
     } else {
-        setMotors(-motorPercent, -motorPercent);
+        setMotors(-left, -right);
     }
 }
 
@@ -111,7 +111,7 @@ void driveToCollision(float motorPercent, bool direction, bool hitBoth) {
     // Sets motors to motorPercent going forwards or backwards
     setMotorsWithDirection(motorPercent, motorPercent, direction);
 
-    if (hitFront) {
+    if (direction) {
         if (hitBoth) { // Expects to hit both front switches
             while(frontLeftSwitch.Value() || frontRightSwitch.Value());
         } else { // Expects to hit either front switch
