@@ -10,12 +10,34 @@
 // Timeouts
 const float START_TIMEOUT = 15.0;
 
-// IGWAN encoder counts per inch traveled
+/*
+ * Drivetrain constants
+ */
+
+// Motor percentages
+const float DEFAULT_MOTOR_PERCENT = 25.0;
+
+// Turning constants
+const bool LEFT = true;
+const bool RIGHT = false;
+
+// Directional constants
+const bool FORWARD = true;
+const bool BACKWARD = false;
+
+// driveToCollision() constants
+const bool HIT_BOTH = true;
+const bool HIT_EITHER = false;
+
+// Encoder constants
 // TODO: update to account for larger wheels
 const float ENCODER_COUNTS_PER_INCH = 30;
-// IGWAN encoder counts per 90 degree turn
 // TODO: update to account for larger wheels
 const float ENCODER_COUNTS_PER_DEGREE = 10;
+
+/*
+ * Light color constants
+ */
 
 // Light color enum
 enum LightColor {
@@ -31,6 +53,10 @@ const float NO_LIGHT = 3.205;
 // Error bound for light measurement values
 const float LIGHT_EPSILON = 0.30;
 
+/*
+ * Microswitch constants
+ */
+
 // Microswitch ids
 enum Switch {
     FrontLeftSwitch,
@@ -38,6 +64,10 @@ enum Switch {
     BackLeftSwitch,
     BackRightSwitch
 };
+
+/*
+ * Other constants
+ */
 
 // Servo arm values
 // TODO: fix this stuff

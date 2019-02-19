@@ -1,19 +1,16 @@
 #ifndef TASKS_H
 #define TASKS_H
 
-void token();
+void startRun();
 
-void ddr();
+void dropToken();
 
-void upPinball();
+void playDDR();
 
-void foosball();
+void slideFoosball();
 
-void lever();
+void flipLever();
 
-void downRamp();
-
-void finalButton();
-
+void pressFinalButton();
 
 #endif

@@ -7,12 +7,32 @@
 /**
  * Sets power percentages of drivetrain motors.
  *
- * @param left: left motor power percentage
- * @param right: right motor power percentage
+ * @param left
+ *          left motor power percentage
+ * @param right
+ *          right motor power percentage
  */
 void setMotors(float left, float right) {
     leftMotor.SetPercent(left);
     rightMotor.SetPercent(right);
+}
+
+/**
+ * Sets power percentages of drivetrain motors directionally.
+ *
+ * @param left
+ *          left motor power percentage
+ * @param right
+ *          right motor power percentage
+ * @param direction
+ *          true if driving forward, false if driving backward
+ */
+void setMotorsWithDirection(float left, float right, bool direction) {
+    if (direction) {
+        setMotors(motorPercent, motorPercent);
+    } else {
+        setMotors(-motorPercent, -motorPercent);
+    }
 }
 
 /**
@@ -34,12 +54,18 @@ void resetEncoders() {
 /**
  * Drives at the given motorPercent for the given distance in inches.
  *
- * @param motorPercent: percentage at which to set left and right motors
- * @param inches: distance for robot to travel
+ * @param motorPercent
+ *          positive percentage at which to set left and right motors
+ * @param direction
+ *          true if driving forward, false if driving backward
+ * @param inches
+ *          positive distance for robot to travel
  */
-void driveForDistance(float motorPercent, float inches) {
+void driveDistance(float motorPercent, bool direction, float inches) {
     resetEncoders();
-    setMotors(motorPercent, motorPercent);
+
+    // Sets motors to motorPercent going forwards or backwards
+    setMotorsWithDirection(motorPercent, motorPercent, direction);
 
     // Run motors until desired distance is reached
     while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
@@ -49,25 +75,20 @@ void driveForDistance(float motorPercent, float inches) {
 /**
  * Turns a specified number of degrees to the left or right at the given motor percentage
  *
- * @param motorPercent: percentage at which to set left and right motors
- * @param turnLeft: flag to turn left or right
- * @param degrees: number of degrees to turn
+ * @param motorPercent
+ *          positive percentage at which to set left and right motors
+ * @param turnLeft
+ *          true if turning left, false if turning right
+ * @param degrees
+ *          positive number of degrees to turn
  */
 void turn(float motorPercent, bool turnLeft, int degrees) {
-    // Reset encoder counts
-    rightEncoder.ResetCounts();
-    leftEncoder.ResetCounts();
+    resetEncoders();
 
     // Set both motors to desired %
-    // Switches sign of % to turn left or right
-    if (turnLeft) {
-        setMotors(-motorPercent, motorPercent);
-    } else {
-        setMotors(motorPercent, -motorPercent);
-    }
+    setMotorsWithDirection(-motorPercent, motorPercent, turnLeft);
 
-    //While the average of the left and right encoder is less than counts,
-    //keep running motors
+    // Run motors until desired turn angle is reached
     while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < ENCODER_COUNTS_PER_DEGREE * degrees);
 
     // Stop both motors
@@ -78,12 +99,17 @@ void turn(float motorPercent, bool turnLeft, int degrees) {
  * Sets motors to the given percentage and drives until switches
  * activated in accordance with hitFront and hitBoth.
  *
- * @param motorPercent: percentage at which to set left and right motors
- * @param hitFront: flag to expect to hit front or back switches
- * @param hitBoth: flag to expect to hit left and/or right switches
+ * @param motorPercent
+ *          postive percentage at which to set left and right motors
+ * @param direction
+ *          true if driving forward to hit front switches,
+ *          false if driving backwards to hit back switches
+ * @param hitBoth
+ *          true if hitting both switches, false if hitting either switch
  */
-void driveToCollision(float motorPercent, bool hitFront, bool hitBoth) {
-    setMotors(motorPercent, motorPercent);
+void driveToCollision(float motorPercent, bool direction, bool hitBoth) {
+    // Sets motors to motorPercent going forwards or backwards
+    setMotorsWithDirection(motorPercent, motorPercent, direction);
 
     if (hitFront) {
         if (hitBoth) { // Expects to hit both front switches
