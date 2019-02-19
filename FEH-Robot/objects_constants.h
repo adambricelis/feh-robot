@@ -7,8 +7,8 @@
 #include <FEHMotor.h>
 #include <FEHServo.h>
 
-// Time limits
-const float START_WAIT = 35.0;
+// Timeouts
+const float START_TIMEOUT = 15.0;
 
 // IGWAN encoder counts per inch traveled
 // TODO: update to account for larger wheels

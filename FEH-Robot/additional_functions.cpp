@@ -21,8 +21,9 @@ void startRun(){
     float x, y;
     while(!LCD.Touch(&x, &y));
 
-    // Waits for start light
-    while(colorDetected() != RedLight);
+    // Waits for start light or timeout
+    float startTime = TimeNow();
+    while(colorDetected() != RedLight && (TimeNow() - startTime) < START_TIMEOUT);
 
     // Starts run
     LCD.Clear(BLACK);
