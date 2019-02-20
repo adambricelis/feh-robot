@@ -67,8 +67,23 @@ void driveDistance(float motorPercent, bool direction, float inches) {
     // Sets motors to motorPercent going forwards or backwards
     setMotorsWithDirection(motorPercent, motorPercent, direction);
 
-    // Run motors until desired distance is reached
-    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+    // High-precision driving if going forward
+    if (direction) {
+        // Run motors until desired distance is reached
+        while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches)) {
+            if (leftEncoder.Counts() > rightEncoder.Counts()) {
+                setMotors(motorPercent - 1, motorPercent);
+            } else if (leftEncoder.Counts() < rightEncoder.Counts()) {
+                setMotors(motorPercent, motorPercent - 1);
+            } else {
+                setMotors(motorPercent, motorPercent);
+            }
+        }
+    } else {
+        // Run motors until desired distance is reached
+        while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+    }
+
     stopMotors();
 }
 
