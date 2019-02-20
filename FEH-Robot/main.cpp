@@ -14,26 +14,26 @@ int main(void)
 
     startRun();
 
-    // Drives to ramp
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 3.0);
-    turn(DEFAULT_MOTOR_PERCENT, LEFT, 90);
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
-    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 45);
-    setBreakpoint(1);
+//    // Drives to ramp
+//    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 3.0);
+//    turn(DEFAULT_MOTOR_PERCENT, LEFT, 90);
+//    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
+//    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 45);
+//    setBreakpoint(1);
 
-    // Drives to claw lever
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
-    setBreakpoint(2);
+//    // Drives to claw lever
+//    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
+//    setBreakpoint(2);
 
     // Activates claw lever
     flipLever();
     setBreakpoint(3);
 
-    // Drives back down ramp
-    driveDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
-    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 90);
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
-    setBreakpoint(4);
+//    // Drives back down ramp
+//    driveDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
+//    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 90);
+//    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
+//    setBreakpoint(4);
 
     // END PT 1 CODE
 

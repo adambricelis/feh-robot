@@ -8,7 +8,7 @@
 #include <FEHServo.h>
 
 // Timeouts
-const float START_TIMEOUT = 15.0;
+const float START_TIMEOUT = 30.0;
 
 /*
  * Drivetrain constants
@@ -76,8 +76,8 @@ const int FOOS_DOWN = 0;
 // Motors
 extern FEHMotor leftMotor;
 extern FEHMotor rightMotor;
-extern FEHServo rotateServo;
-extern FEHServo bendServo;
+extern FEHServo frontBackServo;
+extern FEHServo leftRightServo;
 
 // Sensors
 extern DigitalEncoder leftEncoder;

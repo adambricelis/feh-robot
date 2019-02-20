@@ -12,6 +12,11 @@
  * Starts run after user to presses LCD and start light turns on.
  */
 void startRun(){
+    // Initializes servos
+    frontBackServo.SetMin(728);
+    frontBackServo.SetMax(2484);
+    frontBackServo.SetDegree(0);
+
     // Prompts user to press LCD to start
     LCD.Clear(WHITE);
     LCD.SetFontColor(BLACK);
@@ -43,8 +48,13 @@ void slideFoosball(){
 
 }
 
+/**
+ * Flips the claw lever with the arm mounted on the frontBackServo.
+ */
 void flipLever(){
-
+    frontBackServo.SetDegree(180);
+    Sleep(5.0);
+    frontBackServo.SetDegree(0);
 }
 
 void pressFinalButton(){

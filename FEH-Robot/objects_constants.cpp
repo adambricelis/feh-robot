@@ -8,8 +8,8 @@
 // Motors
 FEHMotor leftMotor(FEHMotor::Motor0,9.0);
 FEHMotor rightMotor(FEHMotor::Motor1,9.0);
-FEHServo rotateServo(FEHServo::Servo0);
-FEHServo bendServo(FEHServo::Servo1);
+FEHServo frontBackServo(FEHServo::Servo0);
+FEHServo leftRightServo(FEHServo::Servo1);
 
 // Sensors
 DigitalEncoder leftEncoder(FEHIO::P0_0);
