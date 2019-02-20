@@ -30,10 +30,8 @@ const bool HIT_BOTH = true;
 const bool HIT_EITHER = false;
 
 // Encoder constants
-// TODO: update to account for larger wheels
-const float ENCODER_COUNTS_PER_INCH = 30;
-// TODO: update to account for larger wheels
-const float ENCODER_COUNTS_PER_DEGREE = 10;
+const float ENCODER_COUNTS_PER_INCH = 33.7408479;
+const float ENCODER_COUNTS_PER_DEGREE = 2.0611111;
 
 /*
  * Light color constants
