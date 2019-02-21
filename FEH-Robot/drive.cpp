@@ -61,7 +61,7 @@ void resetEncoders() {
  * @param inches
  *          positive distance for robot to travel
  */
-void driveDistance(float motorPercent, bool direction, float inches) {
+void driveStraightDistance(float motorPercent, bool direction, float inches) {
     resetEncoders();
 
     // Sets motors to motorPercent going forwards or backwards
@@ -70,11 +70,44 @@ void driveDistance(float motorPercent, bool direction, float inches) {
     // High-precision driving if going forward
     if (direction) {
         // Run motors until desired distance is reached
-        while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+        while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches)) {
+            if (leftEncoder.Counts() > rightEncoder.Counts()) {
+                setMotors(motorPercent - 1, motorPercent);
+            } else if (leftEncoder.Counts() < rightEncoder.Counts()) {
+                setMotors(motorPercent, motorPercent - 1);
+            } else {
+                setMotors(motorPercent, motorPercent);
+            }
+        }
     } else {
         // Run motors until desired distance is reached
         while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
     }
+
+    stopMotors();
+}
+
+/**
+ * Drives along the arc dictated by the given left and right
+ * motor percentages for the given distance in inches.
+ *
+ * @param left
+ *          left motor power percentage
+ * @param right
+ *          right motor power percentage
+ * @param direction
+ *          true if driving forward, false if driving backward
+ * @param inches
+ *          positive distance for robot to travel
+ */
+void driveArcDistance(float left, float right, bool direction, float inches) {
+    resetEncoders();
+
+    // Sets motors to motorPercent going forwards or backwards
+    setMotorsWithDirection(left, right, direction);
+
+    // Run motors until desired distance is reached
+    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
 
     stopMotors();
 }

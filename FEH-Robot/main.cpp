@@ -12,66 +12,32 @@ int main(void)
 {
     // BEGIN PT 1 STEEP RAMP CODE
 
-//    startRun();
-
-//    // Drives to ramp
-//    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
-//    turn(DEFAULT_MOTOR_PERCENT, LEFT, 90);
-//    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
-//    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 45);
-//    setBreakpoint(1);
-
-//    // Drives to claw lever
-//    driveDistance(RAMP_MOTOR_PERCENT, FORWARD, 40.0);
-//    setBreakpoint(2);
-
-//    // Activates claw lever
-//    flipLever();
-//    setBreakpoint(3);
-
-//    // Drives back down ramp
-//    driveDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
-//    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 90);
-//    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
-//    setBreakpoint(4);
-
-    // END PT 1 STEEP RAMP CODE
-
-    // BEGIN PT 1 PINBALL RAMP CODE
-
     startRun();
 
-    // Drives to pinball ramp
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.0);
-    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 45);
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 16.0);
-    turn(DEFAULT_MOTOR_PERCENT, LEFT, 90);
+    // Drives to ramp
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 90);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 55);
     setBreakpoint(1);
 
-    // Drives up pinball ramp
-    driveDistance(RAMP_MOTOR_PERCENT, FORWARD, 40.0);
+    // Drives to claw lever
+    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 30.0);
+    driveArcDistance(30.0, 15.0, FORWARD, 12.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 75);
     setBreakpoint(2);
-
-    // Drives to claw
-    turn(DEFAULT_MOTOR_PERCENT, LEFT, 135);
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 18.0);
-    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 90);
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
-    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 45);
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.0);
-    setBreakpoint(3);
 
     // Activates claw lever
     flipLever();
+    setBreakpoint(3);
+
+    // Drives back down ramp
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
     setBreakpoint(4);
 
-    // Drives down steep ramp
-    driveDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 10.0);
-    turn(DEFAULT_MOTOR_PERCENT, RIGHT, 180);
-    driveDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
-    setBreakpoint(5);
-
-    // END PT 1 PINBALL RAMP CODE
+    // END PT 1 STEEP RAMP CODE
 
     LCD.WriteLine("Done!");
     return 0;

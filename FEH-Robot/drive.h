@@ -11,7 +11,9 @@ void stopMotors();
 
 void resetEncoders();
 
-void driveDistance(float, bool, float);
+void driveStraightDistance(float, bool, float);
+
+void driveArcDistance(float, float, bool, float);
 
 void turn(float, bool, int);
 
