@@ -38,14 +38,11 @@ LightColor colorDetected(){
     // Compares sensor values to LightColor enum values
     if(abs(cds.Value() - RED_LIGHT) < LIGHT_EPSILON){
       color = RedLight;
-      LCD.WriteLine("Red");
     }
     else if(abs(cds.Value() - BLUE_LIGHT) < LIGHT_EPSILON){
         color = BlueLight;
-        LCD.WriteLine("Blue");
     } else {
         color = NoLight;
-        LCD.WriteLine("No light");
     }
 
     return color;
