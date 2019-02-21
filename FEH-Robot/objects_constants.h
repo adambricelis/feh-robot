@@ -17,7 +17,7 @@ const float START_TIMEOUT = 10.0;
 // Motor percentages
 const float DEFAULT_MOTOR_PERCENT = 25.0;
 const float TURN_MOTOR_PERCENT = 30.0;
-const float RAMP_MOTOR_PERCENT = 75.0;
+const float RAMP_MOTOR_PERCENT = 70.0;
 
 // Turning constants
 const bool LEFT = true;

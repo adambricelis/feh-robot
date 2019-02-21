@@ -19,23 +19,21 @@ int main(void)
     turn(TURN_MOTOR_PERCENT, LEFT, 90);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 55);
-    setBreakpoint(1);
 
     // Drives to claw lever
-    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 30.0);
-    driveArcDistance(30.0, 15.0, FORWARD, 12.0);
+    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 34.0);
+    driveArcDistance(27.0, 16.0, FORWARD, 2.0);
+    driveArcDistance(42.0, 10.0, FORWARD, 5.0);
     turn(TURN_MOTOR_PERCENT, LEFT, 75);
-    setBreakpoint(2);
 
     // Activates claw lever
     flipLever();
-    setBreakpoint(3);
 
     // Drives back down ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+    turn(-TURN_MOTOR_PERCENT, RIGHT, 75);
+    driveArcDistance(42.0, 10.0, FORWARD, 2.0);
+    driveArcDistance(16.0, 10.0, FORWARD, 4.0);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
-    setBreakpoint(4);
 
     // END PT 1 STEEP RAMP CODE
 

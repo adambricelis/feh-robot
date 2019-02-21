@@ -53,7 +53,9 @@ void slideFoosball(){
  */
 void flipLever(){
     frontBackServo.SetDegree(180);
-    Sleep(5.0);
+    Sleep(2.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 15);
+    Sleep(1.0);
     frontBackServo.SetDegree(0);
 }
 
