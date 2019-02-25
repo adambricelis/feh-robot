@@ -28,7 +28,7 @@ void startRun(){
 
     // Waits for start light or timeout
     float startTime = TimeNow();
-    while(colorDetected() != RedLight && (TimeNow() - startTime) < START_TIMEOUT);
+    while(detectColor() != RedLight && (TimeNow() - startTime) < START_TIMEOUT);
 
     // Starts run
     LCD.Clear(BLACK);

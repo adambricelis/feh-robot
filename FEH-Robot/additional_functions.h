@@ -3,6 +3,6 @@
 
 void setBreakpoint(int);
 
-LightColor colorDetected();
+LightColor detectColor();
 
 #endif

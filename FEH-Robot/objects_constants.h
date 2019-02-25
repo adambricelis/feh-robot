@@ -48,11 +48,11 @@ enum LightColor {
 };
 
 // Light color voltage values
-const float RED_LIGHT = 0.267;
-const float BLUE_LIGHT = 0.952;
+const float RED_LIGHT = 0.379;
+const float BLUE_LIGHT = 0.765;
 const float NO_LIGHT = 3.205;
 // Error bound for light measurement values
-const float LIGHT_EPSILON = 0.30;
+const float LIGHT_EPSILON = 0.175;
 
 /*
  * Microswitch constants

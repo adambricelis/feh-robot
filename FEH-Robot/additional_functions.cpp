@@ -32,7 +32,7 @@ void setBreakpoint(int number) {
  * Determines the color detected by the CdS cell.
  * @return 0 for no light, 1 for red light, 2 for blue light
  */
-LightColor colorDetected(){
+LightColor detectColor(){
     LightColor color;
 
     // Compares sensor values to LightColor enum values
