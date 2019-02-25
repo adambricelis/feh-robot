@@ -10,32 +10,19 @@
 
 int main(void)
 {
-    // BEGIN PT 1 STEEP RAMP CODE
+    // BEGIN PT 2 CODE
 
     startRun();
 
-    // Drives to ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 90);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 55);
+    // Drives to DDR
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 59);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
 
-    // Drives to claw lever
-    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 34.0);
-    driveArcDistance(27.0, 16.0, FORWARD, 2.0);
-    driveArcDistance(42.0, 10.0, FORWARD, 5.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 75);
+    // Plays Dance Dance Robot
+    playDDR();
 
-    // Activates claw lever
-    flipLever();
-
-    // Drives back down ramp
-    turn(-TURN_MOTOR_PERCENT, RIGHT, 75);
-    driveArcDistance(42.0, 10.0, FORWARD, 2.0);
-    driveArcDistance(16.0, 10.0, FORWARD, 4.0);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 40.0);
-
-    // END PT 1 STEEP RAMP CODE
+    // END PT 2 CODE
 
     LCD.WriteLine("Done!");
     return 0;

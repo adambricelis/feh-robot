@@ -40,8 +40,21 @@ void dropToken(){
 
 }
 
+/**
+ * Plays Dance Dance Robot and presses the correct button.
+ */
 void playDDR(){
+    // Retrieves light color
+    LightColor color = detectColor();
 
+    // Logic for red and blue lights
+    if (color == RedLight) {
+        LCD.WriteLine("RED!");
+    } else if (color == BlueLight) {
+        LCD.WriteLine("BLUE!");
+    } else {
+        LCD.WriteLine("Fatal Error in playDDR().");
+    }
 }
 
 void slideFoosball(){
@@ -52,10 +65,15 @@ void slideFoosball(){
  * Flips the claw lever with the arm mounted on the frontBackServo.
  */
 void flipLever(){
+    // Turn servo to flip claw lever
     frontBackServo.SetDegree(180);
     Sleep(2.0);
+
+    // Turn robot to avoid un-flipping claw lever
     turn(TURN_MOTOR_PERCENT, LEFT, 15);
     Sleep(1.0);
+
+    // Reset servo
     frontBackServo.SetDegree(0);
 }
 
