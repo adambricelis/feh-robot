@@ -15,9 +15,10 @@ int main(void)
     startRun();
 
     // Drives to DDR
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 10.75);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 10.5);
     turn(TURN_MOTOR_PERCENT, RIGHT, 90);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 9.0);
+    Sleep(0.25);
 
     // Plays Dance Dance Robot
     playDDR();

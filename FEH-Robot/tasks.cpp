@@ -49,19 +49,48 @@ void playDDR(){
 
     // Logic for red and blue lights
     if (color == RedLight) {
+        // Prints color detected
+        LCD.WriteLine("RED!");
 
         // Turns toward red button and presses it
         turn(TURN_MOTOR_PERCENT, RIGHT, 45);
-        driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
+
+        // Holds button down for 5 seconds
+        Sleep(5.25);
+
+        // Backs up to wall of course for consistency
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 85);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.5);
     } else if (color == BlueLight) {
+        // Prints color detected
+        LCD.WriteLine("BLUE!");
 
         // Drives to blue button
         turn(TURN_MOTOR_PERCENT, LEFT, 45);
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 8.0);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.25);
 
         // Turns toward blue button and presses it
-        turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-        driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 95);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
+
+        // Holds button down for 5 seconds
+        Sleep(5.25);
+
+        // Backs away from button
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
+
+        // Turns away from wall
+        for (int i = 0; i < 6; i++) {
+            turn(TURN_MOTOR_PERCENT, RIGHT, 15);
+            driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 0.5);
+            setBreakpoint(i);
+        }
+
+        // Backs up to wall of course for consistency
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.5);
+        setBreakpoint(6);
     } else {
         LCD.WriteLine("Fatal Error in playDDR().");
     }
