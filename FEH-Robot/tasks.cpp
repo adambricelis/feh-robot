@@ -57,7 +57,8 @@ void playDDR(){
         driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
-        Sleep(5.25);
+        //driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
+        Sleep(5.5);
 
         // Backs up to wall of course for consistency
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
@@ -76,21 +77,17 @@ void playDDR(){
         driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
-        Sleep(5.25);
+        //driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
+        Sleep(5.5);
 
         // Backs away from button
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 8.5);
 
         // Turns away from wall
-        for (int i = 0; i < 6; i++) {
-            turn(TURN_MOTOR_PERCENT, RIGHT, 15);
-            driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 0.5);
-            setBreakpoint(i);
-        }
+        driveArcDistance(RAMP_MOTOR_PERCENT, -SLOW_MOTOR_PERCENT, FORWARD, 4.75);
 
         // Backs up to wall of course for consistency
         driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.5);
-        setBreakpoint(6);
     } else {
         LCD.WriteLine("Fatal Error in playDDR().");
     }
