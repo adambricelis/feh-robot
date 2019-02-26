@@ -35,15 +35,10 @@ int main(void)
 
     // Drives to foosball counters
     driveArcDistance(FAST_MOTOR_PERCENT, -SLOW_MOTOR_PERCENT, FORWARD, 4.7);
-    setBreakpoint(1);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 7.0);
-    setBreakpoint(2);
     turn(TURN_MOTOR_PERCENT, LEFT, 40);
-    setBreakpoint(3);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 10.0);
-    setBreakpoint(4);
-    turn(TURN_MOTOR_PERCENT, LEFT, 40);
-    setBreakpoint(5);
+    turn(TURN_MOTOR_PERCENT, LEFT, 41);
     driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 2.25);
 
     // END PT 2 CODE

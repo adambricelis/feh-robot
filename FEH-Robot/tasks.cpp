@@ -57,8 +57,8 @@ void playDDR(){
         driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
-        //driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
-        Sleep(5.5);
+        driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
+        //Sleep(5.5);
 
         // Backs up to wall of course for consistency
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
@@ -77,8 +77,8 @@ void playDDR(){
         driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
-        //driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
-        Sleep(5.5);
+        driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
+        //Sleep(5.5);
 
         // Backs away from button
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 8.5);
