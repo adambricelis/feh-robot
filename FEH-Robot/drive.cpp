@@ -88,6 +88,28 @@ void driveStraightDistance(float motorPercent, bool direction, float inches) {
 }
 
 /**
+ * Drives at the given motorPercent for the given time in seconds.
+ *
+ * @param motorPercent
+ *          positive percentage at which to set left and right motors
+ * @param direction
+ *          true if driving forward, false if driving backward
+ * @param seconds
+ *          positive time for robot to travel
+ */
+void driveStraightTime(float motorPercent, bool direction, float seconds) {
+    resetEncoders();
+
+    // Sets motors to motorPercent going forwards or backwards
+    setMotorsWithDirection(motorPercent, motorPercent, direction);
+
+    // Run motors until desired distance is reached
+    Sleep(seconds);
+
+    stopMotors();
+}
+
+/**
  * Drives along the arc dictated by the given left and right
  * motor percentages for the given distance in inches.
  *

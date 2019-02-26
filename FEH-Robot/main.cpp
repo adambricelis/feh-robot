@@ -15,12 +15,13 @@ int main(void)
     startRun();
 
     // Drives to DDR
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 59);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 10.75);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 9.0);
 
     // Plays Dance Dance Robot
     playDDR();
+    setBreakpoint(5);
 
     // END PT 2 CODE
 

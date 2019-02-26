@@ -13,6 +13,8 @@ void resetEncoders();
 
 void driveStraightDistance(float, bool, float);
 
+void driveStraightTime(float, bool, float);
+
 void driveArcDistance(float, float, bool, float);
 
 void turn(float, bool, int);

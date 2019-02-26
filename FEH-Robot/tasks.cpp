@@ -49,9 +49,19 @@ void playDDR(){
 
     // Logic for red and blue lights
     if (color == RedLight) {
-        LCD.WriteLine("RED!");
+
+        // Turns toward red button and presses it
+        turn(TURN_MOTOR_PERCENT, RIGHT, 45);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
     } else if (color == BlueLight) {
-        LCD.WriteLine("BLUE!");
+
+        // Drives to blue button
+        turn(TURN_MOTOR_PERCENT, LEFT, 45);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 8.0);
+
+        // Turns toward blue button and presses it
+        turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
     } else {
         LCD.WriteLine("Fatal Error in playDDR().");
     }
