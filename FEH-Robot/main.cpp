@@ -14,34 +14,29 @@ int main(void)
 
     startRun();
 
-    // Drives to DDR
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 10.5);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 9.0);
-    Sleep(0.25);
-
-    // Plays Dance Dance Robot
-    playDDR();
-
-    // Drives to ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 20.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 49);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 49);
+    //drive to ramp
+    turn(TURN_MOTOR_PERCENT, LEFT, 45);
+    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 16.0);   //16 was not an acutal measurement
 
     // Drives up ramp
-    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 32.0);
+    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 16.0);   //need to measure
     Sleep(0.5);
 
-    // Drives to foosball counters
-    driveArcDistance(FAST_MOTOR_PERCENT, -SLOW_MOTOR_PERCENT, FORWARD, 4.7);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 7.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 40);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 10.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 41);
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 2.25);
+    //go to token machine
+    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 8.0); //need to measure
+    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
 
-    // END PT 2 CODE
+    //drop token
+    dropToken();
+
+    //go to lever
+    turn(TURN_MOTOR_PERCENT, LEFT, 120);
+    driveArcDistance(0.25, 0.50, FORWARD, 32.0);    //need to measure
+
+    //press lever
+    flipLever();
+
 
     LCD.WriteLine("Done!");
     return 0;

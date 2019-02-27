@@ -73,7 +73,7 @@ enum Switch {
 
 // Servo arm values
 // TODO: fix this stuff
-const int TOKEN_DOWN = 0;
+const int TOKEN_DOWN_ANGLE = 0;
 const int LEVER_DOWN = 0;
 const int FOOS_DOWN = 0;
 

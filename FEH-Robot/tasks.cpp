@@ -37,7 +37,12 @@ void startRun(){
 }
 
 void dropToken(){
+    // Turn servo to drop token down
+    frontBackServo.SetDegree(TOKEN_DOWN_ANGLE);
+    Sleep(1.5);
 
+    // Reset servo
+    frontBackServo.SetDegree(0);
 }
 
 /**
