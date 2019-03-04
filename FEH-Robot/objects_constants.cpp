@@ -6,16 +6,13 @@
 #include "objects_constants.h"
 
 // Motors
-FEHMotor leftMotor(FEHMotor::Motor2,9.0);
-FEHMotor rightMotor(FEHMotor::Motor3,9.0);
-FEHServo frontBackServo(FEHServo::Servo0);
-FEHServo leftRightServo(FEHServo::Servo1);
+FEHMotor leftMotor(FEHMotor::Motor3,9.0);
+FEHMotor rightMotor(FEHMotor::Motor2,9.0);
+// TODO: change this to hacked servo
+//FEHServo frontServo(FEHServo::Servo0);
+FEHServo backServo(FEHServo::Servo1);
 
 // Sensors
-DigitalEncoder leftEncoder(FEHIO::P0_0);
-DigitalEncoder rightEncoder(FEHIO::P0_1);
-DigitalInputPin frontLeftSwitch(FEHIO::P0_2);
-DigitalInputPin frontRightSwitch(FEHIO::P0_3);
-DigitalInputPin backLeftSwitch(FEHIO::P0_4);
-DigitalInputPin backRightSwitch(FEHIO::P0_5);
-AnalogInputPin cds(FEHIO::P1_0);
+AnalogInputPin cds(FEHIO::P3_5);
+DigitalEncoder leftEncoder(FEHIO::P3_6);
+DigitalEncoder rightEncoder(FEHIO::P3_7);

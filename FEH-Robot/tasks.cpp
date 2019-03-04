@@ -3,19 +3,62 @@
 #include <FEHUtility.h>
 #include <FEHMotor.h>
 #include <FEHServo.h>
+#include <FEHBuzzer.h>
 #include "drive.h"
 #include "objects_constants.h"
 #include "tasks.h"
 #include "additional_functions.h"
+#include <math.h>
+using namespace std;
+
+/**
+ * Displays breakpoint number, beeps, and pauses execution
+ * until the user taps the LCD. For testing purposes only.
+ *
+ * @param number
+ *          number to be displayed when breakpoint is hit
+ */
+void setBreakpoint(int number) {
+    // Prints number to screen and beeps
+    LCD.WriteLine(number);
+    LCD.WriteLine("Tap to continue");
+    Buzzer.Beep();
+
+    // Waits for user to press screen
+    float x, y;
+    while(!LCD.Touch(&x, &y));
+}
+
+/**
+ * Determines the color detected by the CdS cell.
+ * @return 0 for no light, 1 for red light, 2 for blue light
+ */
+LightColor detectColor(){
+    LightColor color;
+
+    // Compares sensor values to LightColor enum values
+    if(abs(cds.Value() - RED_LIGHT) < LIGHT_EPSILON){
+      color = RedLight;
+    }
+    else if(abs(cds.Value() - BLUE_LIGHT) < LIGHT_EPSILON){
+        color = BlueLight;
+    } else {
+        color = NoLight;
+    }
+
+    return color;
+}
 
 /**
  * Starts run after user to presses LCD and start light turns on.
  */
 void startRun(){
     // Initializes servos
-    frontBackServo.SetMin(728);
-    frontBackServo.SetMax(2484);
-    frontBackServo.SetDegree(0);
+    // TODO: change for hacked servo
+//    frontServo.SetMin(728);
+//    frontServo.SetMax(2484);
+//    frontServo.SetDegree(0);
+    // TODO: add backServo calibration
 
     // Prompts user to press LCD to start
     LCD.Clear(WHITE);
@@ -37,12 +80,13 @@ void startRun(){
 }
 
 void dropToken(){
-    // Turn servo to drop token down
-    frontBackServo.SetDegree(TOKEN_DOWN_ANGLE);
-    Sleep(1.5);
+    // TODO: change to use hacked servo
+//    // Turn servo to drop token down
+//    frontServo.SetDegree(TOKEN_DOWN_ANGLE);
+//    Sleep(1.5);
 
-    // Reset servo
-    frontBackServo.SetDegree(0);
+//    // Reset servo
+//    frontServo.SetDegree(0);
 }
 
 /**
@@ -106,16 +150,18 @@ void slideFoosball(){
  * Flips the claw lever with the arm mounted on the frontBackServo.
  */
 void flipLever(){
-    // Turn servo to flip claw lever
-    frontBackServo.SetDegree(180);
-    Sleep(2.0);
+    // TODO: change to use hacked servo
 
-    // Turn robot to avoid un-flipping claw lever
-    turn(TURN_MOTOR_PERCENT, LEFT, 15);
-    Sleep(1.0);
+//    // Turn servo to flip claw lever
+//    frontServo.SetDegree(180);
+//    Sleep(2.0);
 
-    // Reset servo
-    frontBackServo.SetDegree(0);
+//    // Turn robot to avoid un-flipping claw lever
+//    turn(TURN_MOTOR_PERCENT, LEFT, 15);
+//    Sleep(1.0);
+
+//    // Reset servo
+//    frontServo.SetDegree(0);
 }
 
 void pressFinalButton(){

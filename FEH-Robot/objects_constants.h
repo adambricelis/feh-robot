@@ -19,7 +19,7 @@ const float SLOW_MOTOR_PERCENT = 10.0;
 const float DEFAULT_MOTOR_PERCENT = 25.0;
 const float FAST_MOTOR_PERCENT = 50.0;
 const float TURN_MOTOR_PERCENT = 25.0;
-const float RAMP_MOTOR_PERCENT = 70.0;
+const float RAMP_MOTOR_PERCENT = 50.0;
 
 // Turning constants
 const bool LEFT = true;
@@ -80,16 +80,12 @@ const int FOOS_DOWN = 0;
 // Motors
 extern FEHMotor leftMotor;
 extern FEHMotor rightMotor;
-extern FEHServo frontBackServo;
-extern FEHServo leftRightServo;
+extern FEHServo frontServo;
+extern FEHServo backServo;
 
 // Sensors
+extern AnalogInputPin cds;
 extern DigitalEncoder leftEncoder;
 extern DigitalEncoder rightEncoder;
-extern DigitalInputPin frontLeftSwitch;
-extern DigitalInputPin frontRightSwitch;
-extern DigitalInputPin backLeftSwitch;
-extern DigitalInputPin backRightSwitch;
-extern AnalogInputPin cds;
 
 #endif

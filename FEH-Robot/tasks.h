@@ -1,6 +1,10 @@
 #ifndef TASKS_H
 #define TASKS_H
 
+void setBreakpoint(int);
+
+LightColor detectColor();
+
 void startRun();
 
 void dropToken();

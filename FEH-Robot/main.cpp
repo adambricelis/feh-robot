@@ -10,7 +10,7 @@
 
 int main(void)
 {
-    // BEGIN PT 2 CODE
+    // BEGIN PT 3 CODE
 
     startRun();
 
@@ -42,6 +42,7 @@ int main(void)
     //press lever
     flipLever();
 
+    // END PT 3 CODE
 
     LCD.WriteLine("Done!");
     return 0;

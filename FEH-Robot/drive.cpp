@@ -156,36 +156,3 @@ void turn(float motorPercent, bool turnLeft, int degrees) {
     // Stop both motors
     stopMotors();
 }
-
-/**
- * Sets motors to the given percentage and drives until switches
- * activated in accordance with hitFront and hitBoth.
- *
- * @param motorPercent
- *          postive percentage at which to set left and right motors
- * @param direction
- *          true if driving forward to hit front switches,
- *          false if driving backwards to hit back switches
- * @param hitBoth
- *          true if hitting both switches, false if hitting either switch
- */
-void driveToCollision(float motorPercent, bool direction, bool hitBoth) {
-    // Sets motors to motorPercent going forwards or backwards
-    setMotorsWithDirection(motorPercent, motorPercent, direction);
-
-    if (direction) {
-        if (hitBoth) { // Expects to hit both front switches
-            while(frontLeftSwitch.Value() || frontRightSwitch.Value());
-        } else { // Expects to hit either front switch
-            while(frontLeftSwitch.Value() && frontRightSwitch.Value());
-        }
-    } else {
-        if (hitBoth) { // Expects to hit both back switches
-            while(backLeftSwitch.Value() || backRightSwitch.Value());
-        } else { // Expects to hit either back switch
-            while(backLeftSwitch.Value() && backRightSwitch.Value());
-        }
-    }
-
-    stopMotors();
-}
