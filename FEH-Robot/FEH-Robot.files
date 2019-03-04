@@ -1,7 +1,5 @@
-additional_functions.h
 objects_constants.cpp
 tasks.h
-additional_functions.cpp
 drive.cpp
 drive.h
 objects_constants.h
