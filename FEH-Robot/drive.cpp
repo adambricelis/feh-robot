@@ -67,21 +67,19 @@ void driveStraightDistance(float motorPercent, bool direction, float inches) {
     // Sets motors to motorPercent going forwards or backwards
     setMotorsWithDirection(motorPercent, motorPercent, direction);
 
-    // High-precision driving if going forward
-    if (direction) {
-        // Run motors until desired distance is reached
-        while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches)) {
-            if (leftEncoder.Counts() > rightEncoder.Counts()) {
-                setMotors(motorPercent - 1, motorPercent);
-            } else if (leftEncoder.Counts() < rightEncoder.Counts()) {
-                setMotors(motorPercent, motorPercent - 1);
-            } else {
-                setMotors(motorPercent, motorPercent);
-            }
-        }
-    } else {
-        // Run motors until desired distance is reached
-        while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+    // Run motors until desired distance is reached
+    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches)) {
+
+        // High-precision driving if going forward
+//        if (direction) {
+//            if (leftEncoder.Counts() > rightEncoder.Counts()) {
+//                setMotors(motorPercent - 1, motorPercent);
+//            } else if (leftEncoder.Counts() < rightEncoder.Counts()) {
+//                setMotors(motorPercent, motorPercent - 1);
+//            } else {
+//                setMotors(motorPercent, motorPercent);
+//            }
+//        }
     }
 
     stopMotors();
@@ -148,7 +146,11 @@ void turn(float motorPercent, bool turnLeft, int degrees) {
     resetEncoders();
 
     // Set both motors to desired %
-    setMotorsWithDirection(-motorPercent, motorPercent, turnLeft);
+    if (turnLeft) {
+        setMotors(-motorPercent, motorPercent * 1.50);
+    } else {
+        setMotors(motorPercent, -motorPercent);
+    }
 
     // Run motors until desired turn angle is reached
     while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < ENCODER_COUNTS_PER_DEGREE * degrees);

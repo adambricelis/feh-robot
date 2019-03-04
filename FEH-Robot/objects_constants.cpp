@@ -13,6 +13,6 @@ FEHMotor rightMotor(FEHMotor::Motor2,9.0);
 FEHServo backServo(FEHServo::Servo1);
 
 // Sensors
-AnalogInputPin cds(FEHIO::P3_5);
-DigitalEncoder leftEncoder(FEHIO::P3_6);
-DigitalEncoder rightEncoder(FEHIO::P3_7);
+AnalogInputPin cds(FEHIO::P3_7);
+DigitalEncoder leftEncoder(FEHIO::P3_0);
+DigitalEncoder rightEncoder(FEHIO::P3_1);
