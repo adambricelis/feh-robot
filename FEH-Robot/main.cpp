@@ -6,7 +6,6 @@
 #include "drive.h"
 #include "objects_constants.h"
 #include "tasks.h"
-#include "additional_functions.h"
 
 int main(void)
 {
@@ -14,32 +13,38 @@ int main(void)
 
     startRun();
 
-    //drive to ramp
-    turn(TURN_MOTOR_PERCENT, LEFT, 45);
-    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 16.0);   //16 was not an actual measurement
+    // Drives to pinball ramp
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 90);
     setBreakpoint(1);
 
-    // Drives up ramp
-    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 16.0);   //need to measure
-    Sleep(0.5);
+    // Drives up pinball ramp
+    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 20.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
     setBreakpoint(2);
 
-    //go to token machine
-    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 8.0); //need to measure
-    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+    // Drives to token machine
+    turn(TURN_MOTOR_PERCENT, LEFT, 135);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 45);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
     setBreakpoint(3);
 
-    //drop token
+    // Drops token
     dropToken();
     setBreakpoint(4);
 
-    //go to lever
-    turn(TURN_MOTOR_PERCENT, LEFT, 120);
-    driveArcDistance(0.25, 0.50, FORWARD, 32.0);    //need to measure
+    // Drives to claw lever
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+    driveArcDistance(0.40, 0.25, FORWARD, 32.0);
     setBreakpoint(5);
 
-    //press lever
+    // Flips claw lever
     flipLever();
 
     // END PT 3 CODE
