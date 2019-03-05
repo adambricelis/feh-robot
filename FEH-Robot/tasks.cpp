@@ -49,15 +49,37 @@ LightColor detectColor(){
 }
 
 /**
+ * Moves the front servo arm at the given motorPercent in the
+ * given direction for the given amount of time in seconds.
+ * @param motorPercent
+ *          positive percentage at which to set hacked servo
+ * @param direction
+ *          true if moving arm up, false if moving arm down
+ * @param seconds
+ *          positive time for hacked servo to move arm
+ */
+void moveFrontServoArm(float motorPercent, bool direction, float seconds) {
+    // Moves servo in given direction
+    if (direction) {
+        frontServo.SetPercent(-motorPercent);
+    } else {
+        frontServo.SetPercent(motorPercent);
+    }
+
+    // Waits for given amount of time
+    Sleep(seconds);
+
+    frontServo.Stop();
+}
+
+/**
  * Starts run after user to presses LCD and start light turns on.
  */
 void startRun(){
     // Initializes servos
-    // TODO: change for hacked servo
-//    frontServo.SetMin(728);
-//    frontServo.SetMax(2484);
-//    frontServo.SetDegree(0);
-    // TODO: add backServo calibration
+    backServo.SetMin(650);
+    backServo.SetMax(2372);
+    backServo.SetDegree(0);
 
     // Prompts user to press LCD to start
     LCD.Clear(WHITE);
@@ -78,14 +100,15 @@ void startRun(){
     LCD.WriteLine("Starting now!");
 }
 
+/**
+ * Drops the token in the coin slot from the top level of the course.
+ */
 void dropToken(){
-    // TODO: change to use hacked servo
-//    // Turn servo to drop token down
-//    frontServo.SetDegree(TOKEN_DOWN_ANGLE);
-//    Sleep(1.5);
+    // Turn token arm down
+    moveFrontServoArm(DEFAULT_MOTOR_PERCENT, DOWN, 1.20);
 
-//    // Reset servo
-//    frontServo.SetDegree(0);
+    // Turn token arm up
+    moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 1.20);
 }
 
 /**
@@ -141,7 +164,19 @@ void playDDR(){
     }
 }
 
+/**
+ * Lowers the back servo arm to the foosball counter and drives
+ * to push the counter forward.
+ */
 void slideFoosball(){
+    // TODO: test and verify
+
+    // Lowers back servo arm
+    backServo.SetDegree(90);
+    Sleep(0.5);
+
+    // Drives robot and foosball counter forward
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 8.0);
 
 }
 
@@ -149,18 +184,17 @@ void slideFoosball(){
  * Flips the claw lever with the arm mounted on the frontBackServo.
  */
 void flipLever(){
-    // TODO: change to use hacked servo
+    // Turn servo to flip claw lever
+    moveFrontServoArm(DEFAULT_MOTOR_PERCENT, DOWN, 2.5);
+    Sleep(1.0);
 
-//    // Turn servo to flip claw lever
-//    frontServo.SetDegree(180);
-//    Sleep(2.0);
+    // Turn robot to avoid un-flipping the claw lever
+    turn(TURN_MOTOR_PERCENT, LEFT, 15);
+    Sleep(1.0);
 
-//    // Turn robot to avoid un-flipping claw lever
-//    turn(TURN_MOTOR_PERCENT, LEFT, 15);
-//    Sleep(1.0);
-
-//    // Reset servo
-//    frontServo.SetDegree(0);
+    // Reset servo
+    moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 2.5);
+    Sleep(1.0);
 }
 
 void pressFinalButton(){

@@ -5,6 +5,8 @@ void setBreakpoint(int);
 
 LightColor detectColor();
 
+void moveFrontServoArm(float, bool, float);
+
 void startRun();
 
 void dropToken();

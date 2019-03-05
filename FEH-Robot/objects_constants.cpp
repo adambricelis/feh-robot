@@ -8,9 +8,8 @@
 // Motors
 FEHMotor leftMotor(FEHMotor::Motor3,9.0);
 FEHMotor rightMotor(FEHMotor::Motor2,9.0);
-// TODO: change this to hacked servo
-//FEHServo frontServo(FEHServo::Servo0);
-FEHServo backServo(FEHServo::Servo1);
+FEHMotor frontServo(FEHMotor::Motor0, 5.0);
+FEHServo backServo(FEHServo::Servo0);
 
 // Sensors
 AnalogInputPin cds(FEHIO::P3_7);

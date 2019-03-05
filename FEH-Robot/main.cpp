@@ -9,17 +9,31 @@
 
 int main(void)
 {
+    // SERVO TESTING CODE
+    LCD.WriteLine("Test: dropToken()");
+    setBreakpoint(0);
+    dropToken();
+
+    LCD.WriteLine("Test: flipLever()");
+    setBreakpoint(0);
+    flipLever();
+
+
+
     // SPECIAL TESTING CODE
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.0);
-    setBreakpoint(0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
-    setBreakpoint(0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 45);
-    setBreakpoint(0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-    setBreakpoint(0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 90);
-    setBreakpoint(0);
+//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.0);
+//    setBreakpoint(0);
+//    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
+//    setBreakpoint(0);
+//    turn(TURN_MOTOR_PERCENT, LEFT, 45);
+//    setBreakpoint(0);
+//    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+//    setBreakpoint(0);
+//    turn(TURN_MOTOR_PERCENT, LEFT, 90);
+//    setBreakpoint(0);
+
+
+
     // BEGIN PT 3 CODE
 
 //    startRun();

@@ -28,6 +28,8 @@ const bool RIGHT = false;
 // Directional constants
 const bool FORWARD = true;
 const bool BACKWARD = false;
+const bool UP = true;
+const bool DOWN = false;
 
 // driveToCollision() constants
 const bool HIT_BOTH = true;
@@ -80,7 +82,7 @@ const int FOOS_DOWN = 0;
 // Motors
 extern FEHMotor leftMotor;
 extern FEHMotor rightMotor;
-extern FEHServo frontServo;
+extern FEHMotor frontServo;
 extern FEHServo backServo;
 
 // Sensors
