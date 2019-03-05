@@ -142,12 +142,12 @@ void driveArcDistance(float left, float right, bool direction, float inches) {
  * @param degrees
  *          positive number of degrees to turn
  */
-void turn(float motorPercent, bool turnLeft, int degrees) {
+void turn(float motorPercent, bool turnLeft, float degrees) {
     resetEncoders();
 
     // Set both motors to desired %
     if (turnLeft) {
-        setMotors(-motorPercent, motorPercent * 1.50);
+        setMotors(-motorPercent, motorPercent);
     } else {
         setMotors(motorPercent, -motorPercent);
     }

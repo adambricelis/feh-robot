@@ -18,7 +18,7 @@ const float START_TIMEOUT = 10.0;
 const float SLOW_MOTOR_PERCENT = 10.0;
 const float DEFAULT_MOTOR_PERCENT = 25.0;
 const float FAST_MOTOR_PERCENT = 50.0;
-const float TURN_MOTOR_PERCENT = 40.0;
+const float TURN_MOTOR_PERCENT = 30.0;
 const float RAMP_MOTOR_PERCENT = 50.0;
 
 // Turning constants
@@ -37,7 +37,7 @@ const bool HIT_EITHER = false;
 
 // Encoder constants
 const float ENCODER_COUNTS_PER_INCH = 33.7408479;
-const float ENCODER_COUNTS_PER_DEGREE = 5.00;
+const float ENCODER_COUNTS_PER_DEGREE = 2.25;
 
 /*
  * Light color constants

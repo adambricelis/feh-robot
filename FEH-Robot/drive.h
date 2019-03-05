@@ -17,8 +17,6 @@ void driveStraightTime(float, bool, float);
 
 void driveArcDistance(float, float, bool, float);
 
-void turn(float, bool, int);
-
-void driveToCollision(float, bool, bool);
+void turn(float, bool, float);
 
 #endif

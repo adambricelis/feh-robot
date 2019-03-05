@@ -9,69 +9,44 @@
 
 int main(void)
 {
-    // SERVO TESTING CODE
-    LCD.WriteLine("Test: dropToken()");
-    setBreakpoint(0);
-    dropToken();
-
-    LCD.WriteLine("Test: flipLever()");
-    setBreakpoint(0);
-    flipLever();
-
-
-
-    // SPECIAL TESTING CODE
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.0);
-//    setBreakpoint(0);
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
-//    setBreakpoint(0);
-//    turn(TURN_MOTOR_PERCENT, LEFT, 45);
-//    setBreakpoint(0);
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-//    setBreakpoint(0);
-//    turn(TURN_MOTOR_PERCENT, LEFT, 90);
-//    setBreakpoint(0);
-
-
-
     // BEGIN PT 3 CODE
 
-//    startRun();
+    startRun();
 
-//    // Drives to pinball ramp
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.0);
-//    setBreakpoint(0);
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
-//    setBreakpoint(0);
+    // Drives to pinball ramp
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 17.5);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 85);
+
+    // Drives up pinball ramp
+    driveArcDistance(RAMP_MOTOR_PERCENT + 5.0, RAMP_MOTOR_PERCENT, BACKWARD, 22.0);
+    driveArcDistance(FAST_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT, BACKWARD, 15.0);
+
+    // Drives to token machine
+    turn(TURN_MOTOR_PERCENT, RIGHT, 100);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 15.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 37.5);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.5);
+
+    // Drops token
+    dropToken();
+    setBreakpoint(1);
+
+    // Drives to claw lever
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 4.5);
+    setBreakpoint(2);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+    setBreakpoint(3);
 //    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
-//    turn(TURN_MOTOR_PERCENT, LEFT, 90);
-//    setBreakpoint(1);
-
-//    // Drives up pinball ramp
-//    driveStraightDistance(RAMP_MOTOR_PERCENT, FORWARD, 30.0);
-//    setBreakpoint(2);
-
-//    // Drives to token machine
-//    turn(TURN_MOTOR_PERCENT, LEFT, 135);
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
-//    turn(TURN_MOTOR_PERCENT, LEFT, 45);
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
-//    setBreakpoint(3);
-
-//    // Drops token
-//    dropToken();
 //    setBreakpoint(4);
-
-//    // Drives to claw lever
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.0);
 //    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-//    driveArcDistance(0.40, 0.25, FORWARD, 32.0);
 //    setBreakpoint(5);
+    driveArcDistance(FAST_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT, FORWARD, 20.0);
+    setBreakpoint(6);
 
-//    // Flips claw lever
-//    flipLever();
+    // Flips claw lever
+    flipLever();
 
     // END PT 3 CODE
 
