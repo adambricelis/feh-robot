@@ -186,15 +186,15 @@ void slideFoosball(){
 void flipLever(){
     // Turn servo to flip claw lever
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, DOWN, 2.5);
-    Sleep(1.0);
+    Sleep(0.5);
 
     // Turn robot to avoid un-flipping the claw lever
-    turn(TURN_MOTOR_PERCENT, LEFT, 15);
-    Sleep(1.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 20);
+    Sleep(0.5);
 
     // Reset servo
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 2.5);
-    Sleep(1.0);
+    Sleep(0.5);
 }
 
 void pressFinalButton(){

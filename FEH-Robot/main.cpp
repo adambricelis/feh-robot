@@ -26,24 +26,17 @@ int main(void)
     // Drives to token machine
     turn(TURN_MOTOR_PERCENT, RIGHT, 100);
     driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 15.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 37.5);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.5);
+    turn(TURN_MOTOR_PERCENT, LEFT, 37.75);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
 
     // Drops token
     dropToken();
-    setBreakpoint(1);
 
     // Drives to claw lever
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 4.5);
-    setBreakpoint(2);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-    setBreakpoint(3);
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
-//    setBreakpoint(4);
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-//    setBreakpoint(5);
-    driveArcDistance(FAST_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT, FORWARD, 20.0);
-    setBreakpoint(6);
+    driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, FORWARD, 18.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 25);
 
     // Flips claw lever
     flipLever();
