@@ -133,6 +133,31 @@ void driveArcDistance(float left, float right, bool direction, float inches) {
 }
 
 /**
+ * Drives along the arc dictated by the given left and right
+ * motor percentages for the given time in seconds.
+ *
+ * @param left
+ *          left motor power percentage
+ * @param right
+ *          right motor power percentage
+ * @param direction
+ *          true if driving forward, false if driving backward
+ * @param seconds
+ *          positive time for robot to travel
+ */
+void driveArcTime(float left, float right, bool direction, float seconds) {
+    resetEncoders();
+
+    // Sets motors to motorPercent going forwards or backwards
+    setMotorsWithDirection(left, right, direction);
+
+    // Run motors until desired time is reached
+    Sleep(seconds);
+
+    stopMotors();
+}
+
+/**
  * Turns a specified number of degrees to the left or right at the given motor percentage
  *
  * @param motorPercent

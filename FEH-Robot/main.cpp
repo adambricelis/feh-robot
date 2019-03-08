@@ -9,41 +9,45 @@
 
 int main(void)
 {
-    // TEST CODE
-
-    slideFoosball();
-
     // BEGIN PT 4 CODE
 
-//    startRun();
+    startRun();
 
-//    // Drives to pinball ramp
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 17.5);
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 85);
+    // Drives to pinball ramp
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 17.5);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 85);
 
-//    // Drives up pinball ramp
-//    driveArcDistance(RAMP_MOTOR_PERCENT + 6.0, RAMP_MOTOR_PERCENT, BACKWARD, 22.0);
-//    driveArcDistance(RAMP_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT, BACKWARD, 15.0);
+    // Drives up pinball ramp
+    driveArcDistance(RAMP_MOTOR_PERCENT + 6.0, RAMP_MOTOR_PERCENT, BACKWARD, 22.0);
 
-//    // Drives to token machine
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 100);
-//    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 14.5);
-//    turn(TURN_MOTOR_PERCENT, LEFT, 35);
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
+    // Drives to foosball counter
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 14.0);
+    driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 10.0);
+    setBreakpoint(1);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 110);
+    setBreakpoint(2);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.0);
+    setBreakpoint(3);
+    driveArcTime(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 1.0);
+    setBreakpoint(4);
 
-//    // Drops token
-//    dropToken();
+    // Slides foosball counter
+    slideFoosball();
 
-//    // Drives to claw lever
-//    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.0);
-//    turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-//    driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, FORWARD, 17.0);
-//    turn(TURN_MOTOR_PERCENT, LEFT, 35);
+    // Drives to pinball ramp
 
-//    // Flips claw lever
-//    flipLever();
+    // Drives down pinball ramp
+
+    // Presses DDR button
+    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+    driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.0);
+
+    // Drives to final button
+
+    // Presses final button
+
 
     // END PT 4 CODE
 

@@ -15,6 +15,7 @@ const float START_TIMEOUT = 10.0;
  */
 
 // Motor percentages
+const float OFF_MOTOR_PERCENT = 0.0;
 const float SLOW_MOTOR_PERCENT = 15.0;
 const float DEFAULT_MOTOR_PERCENT = 25.0;
 const float FAST_MOTOR_PERCENT = 50.0;
