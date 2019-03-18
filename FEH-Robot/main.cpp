@@ -23,30 +23,40 @@ int main(void)
     driveArcDistance(RAMP_MOTOR_PERCENT + 6.0, RAMP_MOTOR_PERCENT, BACKWARD, 22.0);
 
     // Drives to foosball counter
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 14.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 13.75);
     driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 10.0);
-    setBreakpoint(1);
     turn(TURN_MOTOR_PERCENT, RIGHT, 110);
-    setBreakpoint(2);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.0);
-    setBreakpoint(3);
-    driveArcTime(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 1.0);
-    setBreakpoint(4);
+    driveArcTime(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 1.125);
 
     // Slides foosball counter
     slideFoosball();
 
     // Drives to pinball ramp
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 60);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 10.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 25);
 
     // Drives down pinball ramp
+    driveStraightDistance(RAMP_MOTOR_PERCENT, BACKWARD, 15.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 18.0);
+
+    // Turns robot around
+    turn(TURN_MOTOR_PERCENT, RIGHT, 165);
 
     // Presses DDR button
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.25);
     driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.0);
 
     // Drives to final button
+    turn(TURN_MOTOR_PERCENT, RIGHT, 80);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 15.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 45);
+    setBreakpoint(3);
 
     // Presses final button
+    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+    setBreakpoint(4);
 
 
     // END PT 4 CODE

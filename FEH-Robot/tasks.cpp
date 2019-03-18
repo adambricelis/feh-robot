@@ -170,15 +170,19 @@ void playDDR(){
  */
 void slideFoosball(){
     // Drives up to foosball counter from wall
-    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.0);
+    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.125);
     Sleep(0.5);
 
     // Lowers back servo arm
-    backServo.SetDegree(105);
+    backServo.SetDegree(120);
     Sleep(0.5);
 
     // Drives robot and foosball counter forward
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 8.0);
+    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 8.25);
+    Sleep(0.5);
+
+    // Raises back servo arm
+    backServo.SetDegree(0);
 }
 
 /**
