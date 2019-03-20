@@ -32,7 +32,7 @@ int main(void)
     slideFoosball();
 
     // Drives to pinball ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 4.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 60);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 10.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 25);
