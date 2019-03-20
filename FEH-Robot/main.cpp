@@ -9,58 +9,55 @@
 
 int main(void)
 {
-    // BEGIN PT 4 CODE
+        //for the whole course
+        startRun();
 
-    startRun();
+        // Drives to pinball ramp
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 45);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 17.5);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 85);
 
-    // Drives to pinball ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 45);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 17.5);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 85);
+        // Drives up pinball ramp
+        driveArcDistance(RAMP_MOTOR_PERCENT + 6.0, RAMP_MOTOR_PERCENT, BACKWARD, 22.0);
+        driveArcDistance(RAMP_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT, BACKWARD, 15.0);
 
-    // Drives up pinball ramp
-    driveArcDistance(RAMP_MOTOR_PERCENT + 6.0, RAMP_MOTOR_PERCENT, BACKWARD, 22.0);
+        // Drives to token machine
+        turn(TURN_MOTOR_PERCENT, RIGHT, 100);
+        driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 14.5);
+        turn(TURN_MOTOR_PERCENT, LEFT, 35);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
 
-    // Drives to foosball counter
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 13.75);
-    driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 10.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 110);
-    driveArcTime(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 1.125);
+        // Drops token
+        dropToken();
 
-    // Slides foosball counter
-    slideFoosball();
-
-    // Drives to pinball ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 4.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 60);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 10.0);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 25);
-
-    // Drives down pinball ramp
-    driveStraightDistance(RAMP_MOTOR_PERCENT, BACKWARD, 15.0);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 18.0);
-
-    // Turns robot around
-    turn(TURN_MOTOR_PERCENT + 10, RIGHT, 165);
-
-    // Presses DDR button
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.25);
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.0);
-
-    // Drives to final button
-    turn(TURN_MOTOR_PERCENT, RIGHT, 80);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 15.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 45);
+        // Drive to foosball
+        //driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.0);
+        driveArcDistance(SLOW_MOTOR_PERCENT+4, FAST_MOTOR_PERCENT, BACKWARD, 14.0);
+        driveArcDistance(SLOW_MOTOR_PERCENT-5, FAST_MOTOR_PERCENT, BACKWARD, 3.0);
+        //driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 5.0);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.0);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.0);
+        turn(TURN_MOTOR_PERCENT, LEFT, 89);
 
 
-    // Presses final button
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 3.0);
+        //driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.5);
+        setBreakpoint(1);
+        driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 10.0);
+        setBreakpoint(2);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 110);
+        setBreakpoint(3);
+        driveArcTime(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 1.125);
+        setBreakpoint(4);
 
+        // slides foosball disks
+        slideFoosball();
 
+        // Flips claw lever
+        //flipLever();
 
-    // END PT 4 CODE
+        // END PT 3 CODE
 
-    LCD.WriteLine("Done!");
-    return 0;
+        LCD.WriteLine("Done!");
+        return 0;
 }

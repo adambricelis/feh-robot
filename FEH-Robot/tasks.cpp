@@ -104,11 +104,17 @@ void startRun(){
  * Drops the token in the coin slot from the top level of the course.
  */
 void dropToken(){
+    // Move back arm out of the way
+    backServo.SetDegree(35);
+
     // Turn token arm down
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, DOWN, 1.20);
 
     // Turn token arm up
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 1.20);
+
+    // Reset back arm
+    backServo.SetDegree(0);
 }
 
 /**
