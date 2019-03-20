@@ -42,7 +42,7 @@ int main(void)
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 18.0);
 
     // Turns robot around
-    turn(TURN_MOTOR_PERCENT, RIGHT, 165);
+    turn(TURN_MOTOR_PERCENT + 10, RIGHT, 165);
 
     // Presses DDR button
     driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.25);
@@ -52,11 +52,11 @@ int main(void)
     turn(TURN_MOTOR_PERCENT, RIGHT, 80);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 15.0);
     turn(TURN_MOTOR_PERCENT, LEFT, 45);
-    setBreakpoint(3);
+
 
     // Presses final button
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
-    setBreakpoint(4);
+    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 3.0);
+
 
 
     // END PT 4 CODE
