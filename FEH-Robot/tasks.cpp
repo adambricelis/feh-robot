@@ -8,7 +8,6 @@
 #include "objects_constants.h"
 #include "tasks.h"
 #include <math.h>
-using namespace std;
 
 /**
  * Displays breakpoint number, beeps, and pauses execution
@@ -135,15 +134,18 @@ void playDDR(){
 
         // Holds button down for 5 seconds
         driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
-        //Sleep(5.5);
 
         // Backs up to wall of course for consistency
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
         turn(TURN_MOTOR_PERCENT, RIGHT, 85);
         driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.5);
-    } else if (color == BlueLight) {
+    } else {
         // Prints color detected
-        LCD.WriteLine("BLUE!");
+        if (color == BlueLight) {
+            LCD.WriteLine("BLUE!");
+        } else {
+            LCD.WriteLine("Fatal Error in playDDR().");
+        }
 
         // Drives to blue button
         turn(TURN_MOTOR_PERCENT, LEFT, 45);
@@ -155,7 +157,6 @@ void playDDR(){
 
         // Holds button down for 5 seconds
         driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
-        //Sleep(5.5);
 
         // Backs away from button
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 8.5);
@@ -165,8 +166,6 @@ void playDDR(){
 
         // Backs up to wall of course for consistency
         driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.5);
-    } else {
-        LCD.WriteLine("Fatal Error in playDDR().");
     }
 }
 
