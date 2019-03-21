@@ -53,7 +53,8 @@ void resetEncoders() {
 
 /**
  * Requires that the motors are currently running. Waits for
- * robot to travel the given distance in inches.
+ * robot to travel the given distance in inches and stops
+ * both motors once the robot has reached the desired distance.
  *
  * @param inches
  *          positive distance for robot to travel
@@ -64,6 +65,8 @@ void runMotorsForDistance(float inches) {
      *  counts is less than the desired number of encoder counts
      */
     while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+
+    stopMotors();
 }
 
 /**
@@ -84,8 +87,6 @@ void driveStraightDistance(float motorPercent, bool direction, float inches) {
 
     // Run motors until desired distance is reached
     runMotorsForDistance(inches);
-
-    stopMotors();
 }
 
 /**
@@ -131,8 +132,6 @@ void driveArcDistance(float left, float right, bool direction, float inches) {
 
     // Run motors until desired distance is reached
     runMotorsForDistance(inches);
-
-    stopMotors();
 }
 
 /**
