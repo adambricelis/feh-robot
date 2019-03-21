@@ -200,7 +200,7 @@ void flipLever(){
     Sleep(0.5);
 
     // Turn robot to avoid un-flipping the claw lever
-    turn(TURN_MOTOR_PERCENT, RIGHT, 20);
+    turn(TURN_MOTOR_PERCENT, LEFT, 20);
     Sleep(0.5);
 
     // Reset servo
