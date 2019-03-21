@@ -207,7 +207,3 @@ void flipLever(){
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 2.5);
     Sleep(0.5);
 }
-
-void pressFinalButton(){
-
-}

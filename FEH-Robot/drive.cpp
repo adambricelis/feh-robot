@@ -52,6 +52,21 @@ void resetEncoders() {
 }
 
 /**
+ * Requires that the motors are currently running. Waits for
+ * robot to travel the given distance in inches.
+ *
+ * @param inches
+ *          positive distance for robot to travel
+ */
+void runMotorsForDistance(float inches) {
+    /*
+     *  Continues looping while the average of the left and right encoder
+     *  counts is less than the desired number of encoder counts
+     */
+    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+}
+
+/**
  * Drives at the given motorPercent for the given distance in inches.
  *
  * @param motorPercent
@@ -68,7 +83,7 @@ void driveStraightDistance(float motorPercent, bool direction, float inches) {
     setMotorsWithDirection(motorPercent, motorPercent, direction);
 
     // Run motors until desired distance is reached
-    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+    runMotorsForDistance(inches);
 
     stopMotors();
 }
@@ -115,7 +130,7 @@ void driveArcDistance(float left, float right, bool direction, float inches) {
     setMotorsWithDirection(left, right, direction);
 
     // Run motors until desired distance is reached
-    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+    runMotorsForDistance(inches);
 
     stopMotors();
 }
@@ -165,7 +180,10 @@ void turn(float motorPercent, bool turnLeft, float degrees) {
         setMotors(motorPercent, -motorPercent);
     }
 
-    // Run motors until desired turn angle is reached
+    /*
+     *  Continues looping while the average of the left and right encoder
+     *  counts is less than the desired number of encoder counts
+     */
     while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < ENCODER_COUNTS_PER_DEGREE * degrees);
 
     // Stop both motors

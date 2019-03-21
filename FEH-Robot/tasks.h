@@ -17,6 +17,4 @@ void slideFoosball();
 
 void flipLever();
 
-void pressFinalButton();
-
 #endif
