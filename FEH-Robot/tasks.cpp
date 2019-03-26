@@ -179,7 +179,7 @@ void slideFoosball(){
     Sleep(0.5);
 
     // Lowers back servo arm
-    backServo.SetDegree(120);
+    backServo.SetDegree(124);
     Sleep(0.5);
 
     // Drives robot and foosball counter forward
@@ -188,12 +188,17 @@ void slideFoosball(){
 
     // Raises back servo arm
     backServo.SetDegree(0);
+    Sleep(0.5);
 }
 
 /**
  * Flips the claw lever with the arm mounted on the frontBackServo.
  */
 void flipLever(){
+    // Move back arm out of the way
+    backServo.SetDegree(35);
+
+    driveArcDistance(35.0, 0, FORWARD, 2.2);
     // Turn servo to flip claw lever
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, DOWN, 2.5);
     Sleep(0.5);
@@ -204,4 +209,6 @@ void flipLever(){
 
     // Reset servo
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 2.5);
+
+    backServo.SetDegree(0);
 }
