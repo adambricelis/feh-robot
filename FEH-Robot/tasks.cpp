@@ -137,8 +137,13 @@ void playDDR(){
 
         // Backs up to wall of course for consistency
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
-        turn(TURN_MOTOR_PERCENT, RIGHT, 85);
-        driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.5);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 92);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.0);
+
+        // aligns in front of ramp
+        driveArcDistance(0.0, FAST_MOTOR_PERCENT, FORWARD, 5.0);
+        driveArcDistance(FAST_MOTOR_PERCENT, 0.0, BACKWARD, 5.0);
+
     } else {
         // Prints color detected
         if (color == BlueLight) {
@@ -160,12 +165,6 @@ void playDDR(){
 
         // Backs away from button
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 8.5);
-
-        // Turns away from wall
-        driveArcDistance(RAMP_MOTOR_PERCENT, -SLOW_MOTOR_PERCENT, FORWARD, 4.75);
-
-        // Backs up to wall of course for consistency
-        driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.5);
     }
 }
 
@@ -198,7 +197,9 @@ void flipLever(){
     // Move back arm out of the way
     backServo.SetDegree(35);
 
-    driveArcDistance(35.0, 0, FORWARD, 2.2);
+    // Turn toward claw lever
+    driveArcDistance(41.5, 0, FORWARD, 2.2);
+
     // Turn servo to flip claw lever
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, DOWN, 2.5);
     Sleep(0.5);
@@ -210,5 +211,6 @@ void flipLever(){
     // Reset servo
     moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 2.5);
 
+    // Reset back arm
     backServo.SetDegree(0);
 }
