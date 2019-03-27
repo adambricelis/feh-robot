@@ -31,7 +31,7 @@ int main(void)
     driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 15.0); // 15.5
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.0); // 1.0
     turn(TURN_MOTOR_PERCENT, LEFT, 35);
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.25);
+    driveStraightTime(FAST_MOTOR_PERCENT, FORWARD, 0.75);
 
     //Drops token
     dropToken();
@@ -40,7 +40,7 @@ int main(void)
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 0.75);
     driveArcDistance(SLOW_MOTOR_PERCENT+1.0, FAST_MOTOR_PERCENT, BACKWARD, 14.0);
     driveArcDistance(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 3.0);
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.5);
+    driveStraightTime(FAST_MOTOR_PERCENT, BACKWARD, 0.75);
 
     // Drives off of wall
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.0);
@@ -50,8 +50,7 @@ int main(void)
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 0.5); //used to be 1.1
     driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 8.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 138);
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.2);
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 0.1);
+    driveStraightTime(FAST_MOTOR_PERCENT, BACKWARD, 0.6);
 
     // Slides foosball counters
     slideFoosball();

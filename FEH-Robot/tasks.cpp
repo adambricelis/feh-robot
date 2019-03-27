@@ -142,7 +142,7 @@ void playDDR(){
 
         // aligns in front of ramp
         driveArcDistance(0.0, FAST_MOTOR_PERCENT, FORWARD, 5.0);
-        driveArcDistance(FAST_MOTOR_PERCENT, 0.0, BACKWARD, 5.0);
+        driveArcDistance(FAST_MOTOR_PERCENT, 0.0, BACKWARD, 5.5);
 
     } else {
         // Prints color detected
@@ -174,7 +174,7 @@ void playDDR(){
  */
 void slideFoosball(){
     // Drives up to foosball counter from wall
-    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.125);
+    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.25);
     Sleep(0.5);
 
     // Lowers back servo arm
