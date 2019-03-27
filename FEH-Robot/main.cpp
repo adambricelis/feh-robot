@@ -28,14 +28,13 @@ int main(void)
 
     // Drives to token machine
     turn(TURN_MOTOR_PERCENT, RIGHT, 100);
-    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 15.5); //used to be 15.0
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 15.0); // 15.5
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.0); // 1.0
     turn(TURN_MOTOR_PERCENT, LEFT, 35);
     driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.25);
 
     //Drops token
     dropToken();
-
 
     // Aligns with wall before foosball (not corner)
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 0.75);
