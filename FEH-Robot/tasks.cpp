@@ -36,7 +36,7 @@ LightColor detectColor(){
 
     // Compares sensor values to LightColor enum values
     if(abs(cds.Value() - RED_LIGHT) < LIGHT_EPSILON){
-      color = RedLight;
+        color = RedLight;
     }
     else if(abs(cds.Value() - BLUE_LIGHT) < LIGHT_EPSILON){
         color = BlueLight;
@@ -75,6 +75,9 @@ void moveFrontServoArm(float motorPercent, bool direction, float seconds) {
  * Starts run after user to presses LCD and start light turns on.
  */
 void startRun(){
+    // Initializes RPS
+    RPS.InitializeTouchMenu();
+
     // Initializes servos
     backServo.SetMin(650);
     backServo.SetMax(2372);
