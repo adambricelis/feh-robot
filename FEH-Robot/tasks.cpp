@@ -111,10 +111,10 @@ void dropToken(){
     backServo.SetDegree(35);
 
     // Turn token arm down
-    moveFrontServoArm(DEFAULT_MOTOR_PERCENT, DOWN, 1.20);
+    moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 0.6);
 
     // Turn token arm up
-    moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 1.20);
+    moveFrontServoArm(FAST_MOTOR_PERCENT, UP, 0.6);
 
     // Reset back arm
     backServo.SetDegree(0);
@@ -130,15 +130,12 @@ void playDDR(){
 
     float startTime = TimeNow();
     while(color == NoLight && (TimeNow() - startTime) < 1.0){
-
         turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
-        driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 0.15);
-
         color = detectColor();
         angle++;
     }
 
-    turn(TURN_MOTOR_PERCENT, LEFT, angle*1.1);
+    turn(TURN_MOTOR_PERCENT, LEFT, angle);
     // Logic for red and blue lights
     if (color == RedLight) {
         // Prints color detected
@@ -225,7 +222,7 @@ void flipLever(){
     Sleep(0.125);
 
     // Reset servo
-    moveFrontServoArm(FAST_MOTOR_PERCENT, UP, 1.0);
+    moveFrontServoArm(FAST_MOTOR_PERCENT, UP, 1.15);
 
     // Reset back arm
     backServo.SetDegree(0);
