@@ -8,6 +8,7 @@
 #include "objects_constants.h"
 #include "tasks.h"
 #include <math.h>
+#include <FEHRPS.h>
 
 /**
  * Displays breakpoint number, beeps, and pauses execution
@@ -126,6 +127,13 @@ void playDDR(){
     // Retrieves light color
     LightColor color = detectColor();
 
+    float startTime = TimeNow();
+    while(color == NoLight && (TimeNow() - startTime) < 2.0){
+        turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
+        color = detectColor();
+    }
+
+
     // Logic for red and blue lights
     if (color == RedLight) {
         // Prints color detected
@@ -141,11 +149,11 @@ void playDDR(){
         // Backs up to wall of course for consistency
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
         turn(TURN_MOTOR_PERCENT, RIGHT, 92);
-        driveStraightTime(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.0);
+        driveStraightTime(40.0, BACKWARD, 1.0);
 
         // aligns in front of ramp
-        driveArcDistance(0.0, FAST_MOTOR_PERCENT, FORWARD, 5.0);
-        driveArcDistance(FAST_MOTOR_PERCENT, 0.0, BACKWARD, 5.5);
+        driveArcDistance(0.0, 65.0, FORWARD, 3.5);
+        driveArcDistance(65.0, 0.0, BACKWARD, 4.0);
 
     } else {
         // Prints color detected
@@ -156,18 +164,18 @@ void playDDR(){
         }
 
         // Drives to blue button
-        turn(TURN_MOTOR_PERCENT, LEFT, 45);
+        turn(TURN_MOTOR_PERCENT, LEFT, 55); //47
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.25);
 
         // Turns toward blue button and presses it
-        turn(TURN_MOTOR_PERCENT, RIGHT, 95);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 98);
         driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
         driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
 
         // Backs away from button
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 8.5);
+        driveArcDistance(DEFAULT_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT+1.3, BACKWARD, 8.5);
     }
 }
 
@@ -177,20 +185,20 @@ void playDDR(){
  */
 void slideFoosball(){
     // Drives up to foosball counter from wall
-    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.25);
-    Sleep(0.5);
+    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.75);
+    Sleep(0.125);
 
     // Lowers back servo arm
     backServo.SetDegree(124);
-    Sleep(0.5);
+    Sleep(0.25);
 
     // Drives robot and foosball counter forward
-    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 8.25);
-    Sleep(0.5);
+    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 9.3);
+    Sleep(0.125);
 
     // Raises back servo arm
     backServo.SetDegree(0);
-    Sleep(0.5);
+    Sleep(0.125);
 }
 
 /**
@@ -204,16 +212,19 @@ void flipLever(){
     driveArcDistance(41.5, 0, FORWARD, 2.2);
 
     // Turn servo to flip claw lever
-    moveFrontServoArm(DEFAULT_MOTOR_PERCENT, DOWN, 2.5);
-    Sleep(0.5);
+    moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.25);
+    Sleep(0.125);
 
     // Turn robot to avoid un-flipping the claw lever
-    turn(TURN_MOTOR_PERCENT, LEFT, 20);
-    Sleep(0.5);
+    turn(TURN_MOTOR_PERCENT, LEFT, 30);
+    Sleep(0.125);
 
     // Reset servo
-    moveFrontServoArm(DEFAULT_MOTOR_PERCENT, UP, 2.5);
+    moveFrontServoArm(FAST_MOTOR_PERCENT, UP, 1.0);
 
     // Reset back arm
     backServo.SetDegree(0);
+
+    // Turn robot to avoid un-flipping the claw lever
+    turn(TURN_MOTOR_PERCENT, RIGHT, 30);
 }
