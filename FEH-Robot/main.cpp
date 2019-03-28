@@ -13,10 +13,10 @@ int main(void)
     startRun();
 
     // Drives to DDR
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 10.5);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 95);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 101);
 
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 9.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 9.1);
     Sleep(0.25);
 
     // Plays Dance Dance Robot
@@ -24,13 +24,14 @@ int main(void)
 
     // Drives up pinball ramp
     driveArcDistance(RAMP_MOTOR_PERCENT + 5.8, RAMP_MOTOR_PERCENT, BACKWARD, 22.0);
-    driveArcDistance(RAMP_MOTOR_PERCENT*1.3, DEFAULT_MOTOR_PERCENT*1.1, BACKWARD, 15.0); //used to both be 1.1
+    driveArcDistance(RAMP_MOTOR_PERCENT*1.33, DEFAULT_MOTOR_PERCENT*1.1, BACKWARD, 15.0); //used to both be 1.1
 
     // Drives to token machine
     turn(TURN_MOTOR_PERCENT, RIGHT, 104);
-    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 15.0); // 15.5
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 30);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 10.0); // 9.0
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 3.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 26);
     driveStraightTime(40.0, FORWARD, 0.75);
 
     //Drops token
@@ -49,7 +50,7 @@ int main(void)
 
     // Drives to foosball corner
     turn(TURN_MOTOR_PERCENT, LEFT, 89);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.3);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.15);
     driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 8.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 138);
     driveStraightTime(40.0, BACKWARD, 0.6);
@@ -64,17 +65,17 @@ int main(void)
     flipLever();
 
     // Drives back to pinball ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.1);
-    driveArcDistance(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 15.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.5);
+    driveArcDistance(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 14.0);
 
     // Drives down pinball ramp
-    driveArcDistance((DEFAULT_MOTOR_PERCENT + 3.0)*1.4, DEFAULT_MOTOR_PERCENT*1.4, BACKWARD, 15.0);
-    driveArcDistance(SLOW_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT, BACKWARD, 19.0);
+    driveArcDistance((DEFAULT_MOTOR_PERCENT + 3.0)*1.4, DEFAULT_MOTOR_PERCENT*1.4, BACKWARD, 15.5);
+    driveArcDistance(SLOW_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT, BACKWARD, 15.5);
 
     // Drives to final button
     turn(FAST_MOTOR_PERCENT, LEFT, 110.0);
-    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 12.0);
-    turn(FAST_MOTOR_PERCENT, LEFT, 40);
+    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 14.0);
+    turn(FAST_MOTOR_PERCENT, LEFT, 38);
 
     // Presses final button
     driveStraightTime(FAST_MOTOR_PERCENT, FORWARD, 1.25);

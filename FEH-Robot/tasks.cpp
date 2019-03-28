@@ -126,14 +126,18 @@ void dropToken(){
 void playDDR(){
     // Retrieves light color
     LightColor color = detectColor();
+    int angle = 0;
 
     float startTime = TimeNow();
-    while(color == NoLight && (TimeNow() - startTime) < 2.0){
-        turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
+    while(color == NoLight && (TimeNow() - startTime) < 1.0){
+
+            turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
+
         color = detectColor();
+        angle++;
     }
 
-
+    turn(TURN_MOTOR_PERCENT, LEFT, angle);
     // Logic for red and blue lights
     if (color == RedLight) {
         // Prints color detected
@@ -153,7 +157,7 @@ void playDDR(){
 
         // aligns in front of ramp
         driveArcDistance(0.0, 65.0, FORWARD, 3.5);
-        driveArcDistance(65.0, 0.0, BACKWARD, 4.0);
+        driveArcDistance(65.0, 0.0, BACKWARD, 3.875);
 
     } else {
         // Prints color detected
@@ -168,8 +172,8 @@ void playDDR(){
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.25);
 
         // Turns toward blue button and presses it
-        turn(TURN_MOTOR_PERCENT, RIGHT, 98);
-        driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 100);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT+5.0, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
         driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
@@ -190,11 +194,11 @@ void slideFoosball(){
 
     // Lowers back servo arm
     backServo.SetDegree(124);
-    Sleep(0.25);
+    Sleep(0.5);
 
     // Drives robot and foosball counter forward
-    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 9.3);
-    Sleep(0.125);
+    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 9.0);
+    Sleep(0.25);
 
     // Raises back servo arm
     backServo.SetDegree(0);
@@ -209,7 +213,7 @@ void flipLever(){
     backServo.SetDegree(35);
 
     // Turn toward claw lever
-    driveArcDistance(41.5, 0, FORWARD, 2.2);
+    driveArcDistance(40.5, 0, FORWARD, 2.2);
 
     // Turn servo to flip claw lever
     moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.25);
