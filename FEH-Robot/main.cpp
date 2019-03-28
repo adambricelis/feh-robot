@@ -27,10 +27,10 @@ int main(void)
     driveArcDistance(RAMP_MOTOR_PERCENT*1.4, DEFAULT_MOTOR_PERCENT*1.1, BACKWARD, 15.0); //first used to be 1.33
 
     // Drives to token machine
-    turn(TURN_MOTOR_PERCENT, RIGHT, 104);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 106); // 104
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0); //for A: 4.0
     driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 10.0); // 9.0
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.0); //for A: 3.0
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.5); //for A: 3.0, prev: 2.0
     turn(TURN_MOTOR_PERCENT, LEFT, 26);
     driveStraightTime(40.0, FORWARD, 0.75);
 
@@ -50,7 +50,7 @@ int main(void)
 
     // Drives to foosball corner
     turn(TURN_MOTOR_PERCENT, LEFT, 89);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.8); //for A: 2.13
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.7); //for A: 2.13
     driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 8.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 138);
     driveStraightTime(40.0, BACKWARD, 0.6);
