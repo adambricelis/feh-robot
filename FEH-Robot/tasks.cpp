@@ -131,13 +131,14 @@ void playDDR(){
     float startTime = TimeNow();
     while(color == NoLight && (TimeNow() - startTime) < 1.0){
 
-            turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
+        driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 0.15);
 
         color = detectColor();
         angle++;
     }
 
-    turn(TURN_MOTOR_PERCENT, LEFT, angle);
+    turn(TURN_MOTOR_PERCENT, LEFT, angle*1.1);
     // Logic for red and blue lights
     if (color == RedLight) {
         // Prints color detected
@@ -216,7 +217,7 @@ void flipLever(){
     driveArcDistance(40.5, 0, FORWARD, 2.2);
 
     // Turn servo to flip claw lever
-    moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.25);
+    moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.15); // 1.15 is better than 1.25.
     Sleep(0.125);
 
     // Turn robot to avoid un-flipping the claw lever
