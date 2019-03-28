@@ -50,7 +50,7 @@ int main(void)
 
     // Drives to foosball corner
     turn(TURN_MOTOR_PERCENT, LEFT, 89);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.15);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.13);
     driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 8.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 138);
     driveStraightTime(40.0, BACKWARD, 0.6);

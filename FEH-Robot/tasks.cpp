@@ -157,7 +157,7 @@ void playDDR(){
 
         // aligns in front of ramp
         driveArcDistance(0.0, 65.0, FORWARD, 3.5);
-        driveArcDistance(65.0, 0.0, BACKWARD, 3.875);
+        driveArcDistance(65.0, 0.0, BACKWARD, 3.94);
 
     } else {
         // Prints color detected
