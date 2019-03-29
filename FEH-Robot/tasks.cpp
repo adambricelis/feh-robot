@@ -124,10 +124,9 @@ void dropToken(){
  * Plays Dance Dance Robot and presses the correct button.
  */
 void playDDR(){
-    // Retrieves light color
+    // Retrieves light color (turning and scanning if necessary)
     LightColor color = detectColor();
     int angle = 0;
-
     float startTime = TimeNow();
     while(color == NoLight && (TimeNow() - startTime) < 1.0){
         turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
@@ -135,7 +134,9 @@ void playDDR(){
         angle++;
     }
 
+    // Turns back for consistency
     turn(TURN_MOTOR_PERCENT, LEFT, angle);
+
     // Logic for red and blue lights
     if (color == RedLight) {
         // Prints color detected
