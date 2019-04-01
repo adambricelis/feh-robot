@@ -3,30 +3,14 @@
 #include <FEHIO.h>
 #include <FEHUtility.h>
 #include <FEHMotor.h>
+#include <FEHRPS.h>
+#include <math.h>
 
-/**
- * Sets power percentages of drivetrain motors.
- *
- * @param left
- *          left motor power percentage
- * @param right
- *          right motor power percentage
- */
 void setMotors(float left, float right) {
     leftMotor.SetPercent(left);
     rightMotor.SetPercent(right);
 }
 
-/**
- * Sets power percentages of drivetrain motors directionally.
- *
- * @param left
- *          left motor power percentage
- * @param right
- *          right motor power percentage
- * @param direction
- *          true if driving forward, false if driving backward
- */
 void setMotorsWithDirection(float left, float right, bool direction) {
     if (direction) {
         setMotors(left, right);
@@ -35,50 +19,28 @@ void setMotorsWithDirection(float left, float right, bool direction) {
     }
 }
 
-/**
- * Stops left and right drivetrain motors.
- */
 void stopMotors() {
     leftMotor.Stop();
     rightMotor.Stop();
 }
 
-/**
- * Resets encoders for left and right drivetrain motors.
- */
 void resetEncoders() {
     leftEncoder.ResetCounts();
     rightEncoder.ResetCounts();
 }
 
-/**
- * Requires that the motors are currently running. Waits for
- * robot to travel the given distance in inches and stops
- * both motors once the robot has reached the desired distance.
- *
- * @param inches
- *          positive distance for robot to travel
- */
 void runMotorsForDistance(float inches) {
     /*
      *  Continues looping while the average of the left and right encoder
      *  counts is less than the desired number of encoder counts
      */
-    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches));
+    double startTime = TimeNow();
+    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < (ENCODER_COUNTS_PER_INCH * inches)
+          && TimeNow() - startTime < DRIVE_TIMEOUT);
 
     stopMotors();
 }
 
-/**
- * Drives at the given motorPercent for the given distance in inches.
- *
- * @param motorPercent
- *          positive percentage at which to set left and right motors
- * @param direction
- *          true if driving forward, false if driving backward
- * @param inches
- *          positive distance for robot to travel
- */
 void driveStraightDistance(float motorPercent, bool direction, float inches) {
     resetEncoders();
 
@@ -89,16 +51,6 @@ void driveStraightDistance(float motorPercent, bool direction, float inches) {
     runMotorsForDistance(inches);
 }
 
-/**
- * Drives at the given motorPercent for the given time in seconds.
- *
- * @param motorPercent
- *          positive percentage at which to set left and right motors
- * @param direction
- *          true if driving forward, false if driving backward
- * @param seconds
- *          positive time for robot to travel
- */
 void driveStraightTime(float motorPercent, bool direction, float seconds) {
     resetEncoders();
 
@@ -111,19 +63,6 @@ void driveStraightTime(float motorPercent, bool direction, float seconds) {
     stopMotors();
 }
 
-/**
- * Drives along the arc dictated by the given left and right
- * motor percentages for the given distance in inches.
- *
- * @param left
- *          left motor power percentage
- * @param right
- *          right motor power percentage
- * @param direction
- *          true if driving forward, false if driving backward
- * @param inches
- *          positive distance for robot to travel
- */
 void driveArcDistance(float left, float right, bool direction, float inches) {
     resetEncoders();
 
@@ -134,19 +73,6 @@ void driveArcDistance(float left, float right, bool direction, float inches) {
     runMotorsForDistance(inches);
 }
 
-/**
- * Drives along the arc dictated by the given left and right
- * motor percentages for the given time in seconds.
- *
- * @param left
- *          left motor power percentage
- * @param right
- *          right motor power percentage
- * @param direction
- *          true if driving forward, false if driving backward
- * @param seconds
- *          positive time for robot to travel
- */
 void driveArcTime(float left, float right, bool direction, float seconds) {
     resetEncoders();
 
@@ -159,16 +85,6 @@ void driveArcTime(float left, float right, bool direction, float seconds) {
     stopMotors();
 }
 
-/**
- * Turns a specified number of degrees to the left or right at the given motor percentage
- *
- * @param motorPercent
- *          positive percentage at which to set left and right motors
- * @param turnLeft
- *          true if turning left, false if turning right
- * @param degrees
- *          positive number of degrees to turn
- */
 void turn(float motorPercent, bool turnLeft, float degrees) {
     resetEncoders();
 
@@ -183,8 +99,76 @@ void turn(float motorPercent, bool turnLeft, float degrees) {
      *  Continues looping while the average of the left and right encoder
      *  counts is less than the desired number of encoder counts
      */
-    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < ENCODER_COUNTS_PER_DEGREE * degrees);
+    double startTime = TimeNow();
+    while((leftEncoder.Counts() + rightEncoder.Counts()) / 2.0 < ENCODER_COUNTS_PER_DEGREE * degrees
+          && TimeNow() - startTime < DRIVE_TIMEOUT);
 
     // Stop both motors
     stopMotors();
+}
+
+void checkHeading(float heading)
+{
+    // Adjusts robot until desired heading or timeout is reached
+    float currentHeading = RPS.Heading();
+    int startTime = TimeNow();
+    while (abs(currentHeading - heading) > 0.5 && TimeNow() - startTime < RPS_TIMEOUT) {
+
+        // Special case for heading of 0
+        if (heading == 0) {
+            if (currentHeading > 180) {
+                turn(SLOW_MOTOR_PERCENT, LEFT, 2);
+            } else {
+                turn(SLOW_MOTOR_PERCENT, RIGHT, 2);
+            }
+        } else {
+            if (currentHeading < heading) {
+                turn(SLOW_MOTOR_PERCENT, LEFT, 2);
+            } else {
+                turn(SLOW_MOTOR_PERCENT, RIGHT, 2);
+            }
+        }
+
+        // Pauses and updates currentHeading
+        Sleep(0.25);
+        currentHeading = RPS.Heading();
+    }
+}
+
+void checkLocationX(float x) {
+    float currentHeading = RPS.Heading();
+    float currentX = RPS.X();
+    bool direction = abs(currentHeading - 270) < 10;
+    int startTime = TimeNow();
+
+    while (abs(currentX - x) > 0.5 && TimeNow() - startTime < RPS_TIMEOUT) {
+        if (x > currentX) {
+            driveStraightDistance(SLOW_MOTOR_PERCENT, direction, 0.25);
+        } else {
+            driveStraightDistance(SLOW_MOTOR_PERCENT, !direction, 0.25);
+        }
+
+        // Pauses and updates currentX
+        Sleep(0.25);
+        currentX = RPS.X();
+    }
+}
+
+void checkLocationY(float y) {
+    float currentHeading = RPS.Heading();
+    float currentY = RPS.Y();
+    bool direction = currentHeading < 5 || currentHeading > 355;
+    int startTime = TimeNow();
+
+    while (abs(currentY - y) > 0.5 && TimeNow() - startTime < RPS_TIMEOUT) {
+        if (y > currentY) {
+            driveStraightDistance(SLOW_MOTOR_PERCENT, direction, 0.25);
+        } else {
+            driveStraightDistance(SLOW_MOTOR_PERCENT, !direction, 0.25);
+        }
+
+        // Pauses and updates currentX
+        Sleep(0.25);
+        currentY = RPS.Y();
+    }
 }

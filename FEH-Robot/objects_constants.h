@@ -8,7 +8,9 @@
 #include <FEHServo.h>
 
 // Timeouts
-const float START_TIMEOUT = 10.0;
+const float START_TIMEOUT = 15.0;
+const float DRIVE_TIMEOUT = 10.0;
+const float RPS_TIMEOUT = 2.0;
 
 /*
  * Drivetrain constants

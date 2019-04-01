@@ -10,13 +10,6 @@
 #include <math.h>
 #include <FEHRPS.h>
 
-/**
- * Displays breakpoint number, beeps, and pauses execution
- * until the user taps the LCD. For testing purposes only.
- *
- * @param number
- *          number to be displayed when breakpoint is hit
- */
 void setBreakpoint(int number) {
     // Prints number to screen and beeps
     LCD.WriteLine(number);
@@ -28,10 +21,6 @@ void setBreakpoint(int number) {
     while(!LCD.Touch(&x, &y));
 }
 
-/**
- * Determines the color detected by the CdS cell.
- * @return 0 for no light, 1 for red light, 2 for blue light
- */
 LightColor detectColor(){
     LightColor color;
 
@@ -48,16 +37,6 @@ LightColor detectColor(){
     return color;
 }
 
-/**
- * Moves the front servo arm at the given motorPercent in the
- * given direction for the given amount of time in seconds.
- * @param motorPercent
- *          positive percentage at which to set hacked servo
- * @param direction
- *          true if moving arm up, false if moving arm down
- * @param seconds
- *          positive time for hacked servo to move arm
- */
 void moveFrontServoArm(float motorPercent, bool direction, float seconds) {
     // Moves servo in given direction
     if (direction) {
@@ -72,9 +51,6 @@ void moveFrontServoArm(float motorPercent, bool direction, float seconds) {
     frontServo.Stop();
 }
 
-/**
- * Starts run after user to presses LCD and start light turns on.
- */
 void startRun(){
     // Initializes RPS
     RPS.InitializeTouchMenu();
@@ -103,9 +79,6 @@ void startRun(){
     LCD.WriteLine("Starting now!");
 }
 
-/**
- * Drops the token in the coin slot from the top level of the course.
- */
 void dropToken(){
     // Move back arm out of the way
     backServo.SetDegree(35);
@@ -120,9 +93,6 @@ void dropToken(){
     backServo.SetDegree(0);
 }
 
-/**
- * Plays Dance Dance Robot and presses the correct button.
- */
 void playDDR(){
     // Retrieves light color (turning and scanning if necessary)
     LightColor color = detectColor();
@@ -182,10 +152,6 @@ void playDDR(){
     }
 }
 
-/**
- * Lowers the back servo arm to the foosball counter and drives
- * to push the counter forward.
- */
 void slideFoosball(){
     // Drives up to foosball counter from wall
     driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.75);
@@ -204,9 +170,6 @@ void slideFoosball(){
     Sleep(0.125);
 }
 
-/**
- * Flips the claw lever with the arm mounted on the frontBackServo.
- */
 void flipLever(){
     // Move back arm out of the way
     backServo.SetDegree(35);
