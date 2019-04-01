@@ -112,7 +112,9 @@ void checkHeading(float heading)
     // Adjusts robot until desired heading or timeout is reached
     float currentHeading = RPS.Heading();
     int startTime = TimeNow();
-    while (abs(currentHeading - heading) > 0.5 && TimeNow() - startTime < RPS_TIMEOUT) {
+    while (abs(currentHeading - heading) > 0.5
+           && TimeNow() - startTime < RPS_TIMEOUT
+           && currentHeading >= 0) {
 
         // Special case for heading of 0
         if (heading == 0) {
@@ -141,7 +143,9 @@ void checkLocationX(float x) {
     bool direction = abs(currentHeading - 270) < 10;
     int startTime = TimeNow();
 
-    while (abs(currentX - x) > 0.5 && TimeNow() - startTime < RPS_TIMEOUT) {
+    while (abs(currentX - x) > 0.5
+           && TimeNow() - startTime < RPS_TIMEOUT
+           && currentX >= 0) {
         if (x > currentX) {
             driveStraightDistance(SLOW_MOTOR_PERCENT, direction, 0.25);
         } else {
@@ -160,7 +164,9 @@ void checkLocationY(float y) {
     bool direction = currentHeading < 5 || currentHeading > 355;
     int startTime = TimeNow();
 
-    while (abs(currentY - y) > 0.5 && TimeNow() - startTime < RPS_TIMEOUT) {
+    while (abs(currentY - y) > 0.5
+           && TimeNow() - startTime < RPS_TIMEOUT
+           && currentY >= 0) {
         if (y > currentY) {
             driveStraightDistance(SLOW_MOTOR_PERCENT, direction, 0.25);
         } else {
