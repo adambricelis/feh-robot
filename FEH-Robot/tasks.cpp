@@ -138,7 +138,7 @@ void playDDR(){
 
         // Drives to blue button
         turn(TURN_MOTOR_PERCENT, LEFT, 55); //47
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.25);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.0);
 
         // Turns toward blue button and presses it
         turn(TURN_MOTOR_PERCENT, RIGHT, 100);
@@ -148,7 +148,7 @@ void playDDR(){
         driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
 
         // Backs away from button
-        driveArcDistance(DEFAULT_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT+1.3, BACKWARD, 8.5);
+        driveArcDistance(DEFAULT_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT+1.3, BACKWARD, 8.0);
     }
 }
 

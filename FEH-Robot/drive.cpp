@@ -116,23 +116,24 @@ void checkHeading(float heading)
            && TimeNow() - startTime < RPS_TIMEOUT
            && currentHeading >= 0) {
 
+        LCD.WriteLine(currentHeading);
         // Special case for heading of 0
         if (heading == 0) {
             if (currentHeading > 180) {
-                turn(SLOW_MOTOR_PERCENT, LEFT, 2);
+                turn(DEFAULT_MOTOR_PERCENT, LEFT, 2);
             } else {
-                turn(SLOW_MOTOR_PERCENT, RIGHT, 2);
+                turn(DEFAULT_MOTOR_PERCENT, RIGHT, 2);
             }
         } else {
             if (currentHeading < heading) {
-                turn(SLOW_MOTOR_PERCENT, LEFT, 2);
+                turn(DEFAULT_MOTOR_PERCENT, LEFT, 2);
             } else {
-                turn(SLOW_MOTOR_PERCENT, RIGHT, 2);
+                turn(DEFAULT_MOTOR_PERCENT, RIGHT, 2);
             }
         }
 
         // Pauses and updates currentHeading
-        Sleep(0.25);
+        Sleep(0.4);
         currentHeading = RPS.Heading();
     }
 }
@@ -147,9 +148,9 @@ void checkLocationX(float x) {
            && TimeNow() - startTime < RPS_TIMEOUT
            && currentX >= 0) {
         if (x > currentX) {
-            driveStraightDistance(SLOW_MOTOR_PERCENT, direction, 0.25);
+            driveStraightDistance(DEFAULT_MOTOR_PERCENT, direction, 0.25);
         } else {
-            driveStraightDistance(SLOW_MOTOR_PERCENT, !direction, 0.25);
+            driveStraightDistance(DEFAULT_MOTOR_PERCENT, !direction, 0.25);
         }
 
         // Pauses and updates currentX
@@ -168,9 +169,9 @@ void checkLocationY(float y) {
            && TimeNow() - startTime < RPS_TIMEOUT
            && currentY >= 0) {
         if (y > currentY) {
-            driveStraightDistance(SLOW_MOTOR_PERCENT, direction, 0.25);
+            driveStraightDistance(DEFAULT_MOTOR_PERCENT, direction, 0.25);
         } else {
-            driveStraightDistance(SLOW_MOTOR_PERCENT, !direction, 0.25);
+            driveStraightDistance(DEFAULT_MOTOR_PERCENT, !direction, 0.25);
         }
 
         // Pauses and updates currentX

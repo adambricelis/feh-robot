@@ -13,9 +13,9 @@ int main(void)
     startRun();
 
     // Drives to DDR
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 12.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 101);
-    checkHeading(315);
+    checkHeading(235);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 9.1);
     Sleep(0.25);
 
@@ -31,7 +31,7 @@ int main(void)
     turn(TURN_MOTOR_PERCENT, RIGHT, 106); // 104
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0); //for A: 4.0
     driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 10.0); // 9.0
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.5); //for A: 3.0, prev: 2.0
+    //driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.5); //for A: 3.0, prev: 2.0
     turn(TURN_MOTOR_PERCENT, LEFT, 26);
     checkHeading(180);
     driveStraightTime(40.0, FORWARD, 0.75);
@@ -68,8 +68,8 @@ int main(void)
     flipLever();
 
     // Drives back to pinball ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 5.5);
-    driveArcDistance(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 14.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 6.0);
+    driveArcDistance(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 13.0);
     checkHeading(0);
 
     // Drives down pinball ramp
