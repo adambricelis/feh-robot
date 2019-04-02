@@ -8,9 +8,9 @@
 #include <FEHServo.h>
 
 // Timeouts
-const float START_TIMEOUT = 15.0;
-const float DRIVE_TIMEOUT = 10.0;
-const float RPS_TIMEOUT = 2.0;
+const float START_TIMEOUT = 33.0;
+const float DRIVE_TIMEOUT = 5.0;
+const float RPS_TIMEOUT = 3.0;
 
 /*
  * Drivetrain constants
@@ -21,6 +21,7 @@ const float OFF_MOTOR_PERCENT = 0.0;
 const float SLOW_MOTOR_PERCENT = 15.0;
 const float DEFAULT_MOTOR_PERCENT = 25.0;
 const float FAST_MOTOR_PERCENT = 50.0;
+const float VERY_FAST_MOTOR_PERCENT = 65.0;
 const float TURN_MOTOR_PERCENT = 30.0;
 const float RAMP_MOTOR_PERCENT = 50.0;
 

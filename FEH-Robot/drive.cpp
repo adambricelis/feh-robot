@@ -112,7 +112,7 @@ void checkHeading(float heading)
     // Adjusts robot until desired heading or timeout is reached
     float currentHeading = RPS.Heading();
     int startTime = TimeNow();
-    while (abs(currentHeading - heading) > 0.5
+    while (abs(currentHeading - heading) > 1.0
            && TimeNow() - startTime < RPS_TIMEOUT
            && currentHeading >= 0) {
 

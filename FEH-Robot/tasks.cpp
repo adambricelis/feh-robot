@@ -77,6 +77,9 @@ void startRun(){
     LCD.Clear(BLACK);
     LCD.SetFontColor(WHITE);
     LCD.WriteLine("Starting now!");
+
+    // Recalibrates initial heading
+    checkHeading(315);
 }
 
 void dropToken(){
@@ -113,7 +116,8 @@ void playDDR(){
         LCD.WriteLine("RED!");
 
         // Turns toward red button and presses it
-        turn(TURN_MOTOR_PERCENT, RIGHT, 45);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 35);
+        checkHeading(180);
         driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
@@ -121,12 +125,13 @@ void playDDR(){
 
         // Backs up to wall of course for consistency
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
-        turn(TURN_MOTOR_PERCENT, RIGHT, 92);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 80);
         driveStraightTime(40.0, BACKWARD, 1.0);
 
-        // aligns in front of ramp
-        driveArcDistance(0.0, 65.0, FORWARD, 3.5);
-        driveArcDistance(65.0, 0.0, BACKWARD, 3.94);
+        // Aligns in front of ramp
+        driveArcDistance(OFF_MOTOR_PERCENT, VERY_FAST_MOTOR_PERCENT, FORWARD, 4.0);
+        driveArcDistance(VERY_FAST_MOTOR_PERCENT, OFF_MOTOR_PERCENT, BACKWARD, 3.0);
+        turn(TURN_MOTOR_PERCENT, LEFT, 15);
 
     } else {
         // Prints color detected
@@ -137,12 +142,14 @@ void playDDR(){
         }
 
         // Drives to blue button
-        turn(TURN_MOTOR_PERCENT, LEFT, 55); //47
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 6.0);
+        turn(TURN_MOTOR_PERCENT, LEFT, 50);
+        checkHeading(270);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.5);
 
         // Turns toward blue button and presses it
-        turn(TURN_MOTOR_PERCENT, RIGHT, 100);
-        driveStraightTime(DEFAULT_MOTOR_PERCENT+5.0, FORWARD, 1.5);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 95);
+        checkHeading(180);
+        driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
         driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
@@ -150,19 +157,22 @@ void playDDR(){
         // Backs away from button
         driveArcDistance(DEFAULT_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT+1.3, BACKWARD, 8.0);
     }
+
+    // Consistent ending angle
+    checkHeading(180);
 }
 
 void slideFoosball(){
     // Drives up to foosball counter from wall
-    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.75);
-    Sleep(0.125);
+    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.5);
+    Sleep(0.25);
 
     // Lowers back servo arm
     backServo.SetDegree(124);
     Sleep(0.5);
 
     // Drives robot and foosball counter forward
-    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 9.0);
+    driveStraightDistance(FAST_MOTOR_PERCENT, FORWARD, 8.5);
     Sleep(0.25);
 
     // Raises back servo arm
@@ -175,7 +185,7 @@ void flipLever(){
     backServo.SetDegree(35);
 
     // Turn toward claw lever
-    driveArcDistance(40.5, 0, FORWARD, 2.2);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT, OFF_MOTOR_PERCENT, FORWARD, 2.5);
 
     // Turn servo to flip claw lever
     moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.15); // 1.15 is better than 1.25.
