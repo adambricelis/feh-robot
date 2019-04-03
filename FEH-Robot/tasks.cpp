@@ -99,72 +99,80 @@ void dropToken(){
 void playDDR(){
     // Retrieves light color (turning and scanning if necessary)
     LightColor color = detectColor();
-    int angle = 0;
-    float startTime = TimeNow();
-    while(color == NoLight && (TimeNow() - startTime) < 1.0){
-        turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
-        color = detectColor();
-        angle++;
-    }
+//    int angle = 0;
+//    float startTime = TimeNow();
+//    while(color == NoLight && (TimeNow() - startTime) < 1.0){
+//        turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
+//        color = detectColor();
+//        angle++;
+//    }
 
-    // Turns back for consistency
-    turn(TURN_MOTOR_PERCENT, LEFT, angle);
+//    // Turns back for consistency
+//    turn(TURN_MOTOR_PERCENT, LEFT, angle);
 
     // Logic for red and blue lights
     if (color == RedLight) {
         // Prints color detected
         LCD.WriteLine("RED!");
 
-        // Turns toward red button and presses it
-        turn(TURN_MOTOR_PERCENT, RIGHT, 35);
+        // Navigates to red button
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.0);
+        setBreakpoint(11);
         checkHeading(180);
+        turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+        setBreakpoint(12);
+        checkHeading(90);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
+        setBreakpoint(13);
+        checkHeading(90);
+        turn(TURN_MOTOR_PERCENT, LEFT, 90);
+        setBreakpoint(14);
+        checkHeading(180);
+
+        // Presses red button
         driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
-        driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
+        driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.25);
 
-        // Backs up to wall of course for consistency
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
-        turn(TURN_MOTOR_PERCENT, RIGHT, 80);
-        driveStraightTime(40.0, BACKWARD, 1.0);
+        // Backs away from button
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 4.0);
 
-        // Aligns in front of ramp
-        driveArcDistance(OFF_MOTOR_PERCENT, VERY_FAST_MOTOR_PERCENT, FORWARD, 4.0);
-        driveArcDistance(VERY_FAST_MOTOR_PERCENT, OFF_MOTOR_PERCENT, BACKWARD, 3.0);
-        turn(TURN_MOTOR_PERCENT, LEFT, 15);
+        // Turns toward final button
+        turn(TURN_MOTOR_PERCENT, RIGHT, 90);
+        checkHeading(90);
 
     } else {
         // Prints color detected
         if (color == BlueLight) {
             LCD.WriteLine("BLUE!");
         } else {
-            LCD.WriteLine("Fatal Error in playDDR().");
+            LCD.WriteLine("Fatal error in playDDR().");
         }
 
-        // Drives to blue button
-        turn(TURN_MOTOR_PERCENT, LEFT, 50);
-        checkHeading(270);
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.5);
-
-        // Turns toward blue button and presses it
-        turn(TURN_MOTOR_PERCENT, RIGHT, 95);
-        checkHeading(180);
+        // Presses blue button
         driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
 
         // Holds button down for 5 seconds
-        driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.5);
+        driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.25);
 
         // Backs away from button
-        driveArcDistance(DEFAULT_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT+1.3, BACKWARD, 8.0);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 6.0);
+
+        // Turns toward final button
+        driveArcDistance(FAST_MOTOR_PERCENT, OFF_MOTOR_PERCENT, FORWARD, 5.0);
+        checkHeading(90);
+
+        // Drives forward to match red button
     }
 
     // Consistent ending angle
-    checkHeading(180);
+    checkHeading(90);
 }
 
 void slideFoosball(){
     // Drives up to foosball counter from wall
-    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.5);
+    driveStraightDistance(SLOW_MOTOR_PERCENT, FORWARD, 2.25);
     Sleep(0.25);
 
     // Lowers back servo arm
@@ -185,10 +193,11 @@ void flipLever(){
     backServo.SetDegree(35);
 
     // Turn toward claw lever
-    driveArcDistance(DEFAULT_MOTOR_PERCENT, OFF_MOTOR_PERCENT, FORWARD, 2.5);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT + 7.5, OFF_MOTOR_PERCENT, FORWARD, 2.5);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 10);
 
     // Turn servo to flip claw lever
-    moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.15); // 1.15 is better than 1.25.
+    moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.15);
     Sleep(0.125);
 
     // Turn robot to avoid un-flipping the claw lever
