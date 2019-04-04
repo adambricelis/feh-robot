@@ -28,10 +28,10 @@ int main(void)
     turn(TURN_MOTOR_PERCENT, RIGHT, 105);
     checkHeading(128);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
-    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 11.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 30);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 12.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 25);
     checkHeading(180);
-    driveStraightTime(40.0, FORWARD, 0.75);
+    driveStraightTime(40.0, FORWARD, 0.5);
 
     //Drops token
     dropToken();
@@ -84,8 +84,9 @@ int main(void)
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.5);
     turn(TURN_MOTOR_PERCENT, RIGHT, 90);
     checkHeading(180);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 1.5);
     checkLocationY(ddrY);
+    Sleep(0.25);
 
     // Plays Dance Dance Robot
     playDDR();

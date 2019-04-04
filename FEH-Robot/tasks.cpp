@@ -127,7 +127,7 @@ void playDDR(){
         checkHeading(180);
         driveArcDistance(FAST_MOTOR_PERCENT, -SLOW_MOTOR_PERCENT, FORWARD, 6.0);
         checkHeading(90);
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.25);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.0);
         checkHeading(90);
         turn(TURN_MOTOR_PERCENT, LEFT, 90);
         checkHeading(180);
