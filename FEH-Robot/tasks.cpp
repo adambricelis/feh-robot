@@ -157,10 +157,10 @@ void playDDR(){
         driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 5.25);
 
         // Backs away from button
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 6.0);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 7.5);
 
         // Turns toward final button
-        driveArcDistance(FAST_MOTOR_PERCENT, OFF_MOTOR_PERCENT, FORWARD, 5.0);
+        driveArcDistance(FAST_MOTOR_PERCENT+3.0, -DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
         checkHeading(90);
 
         // Drives forward to match red button
@@ -194,7 +194,7 @@ void flipLever(){
 
     // Turn toward claw lever
     driveArcDistance(DEFAULT_MOTOR_PERCENT + 7.5, OFF_MOTOR_PERCENT, FORWARD, 2.5);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 10);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 5);
 
     // Turn servo to flip claw lever
     moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.15);
