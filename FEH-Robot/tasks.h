@@ -32,8 +32,10 @@ void moveFrontServoArm(float motorPercent, bool direction, float seconds);
 
 /**
  * Starts run after user to presses LCD and start light turns on.
+ *
+ * @return RPS y coordinate of DDR
  */
-void startRun();
+float startRun();
 
 /**
  * Drops the token in the coin slot from the top level of the course.

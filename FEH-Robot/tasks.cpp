@@ -51,7 +51,11 @@ void moveFrontServoArm(float motorPercent, bool direction, float seconds) {
     frontServo.Stop();
 }
 
-void startRun(){
+float startRun(){
+    // Function variables
+    float ddrY = -1;
+    float x, y;
+
     // Initializes RPS
     RPS.InitializeTouchMenu();
 
@@ -60,13 +64,24 @@ void startRun(){
     backServo.SetMax(2372);
     backServo.SetDegree(0);
 
+    // Loops to retrieve valid y coordinate
+    while (ddrY < 0) {
+        // Prompts user to press LCD to record DDR y coordinate
+        LCD.Clear(WHITE);
+        LCD.SetFontColor(BLACK);
+        LCD.WriteLine("Press to store DDR location.");
+
+        // Waits for user to press LCD
+        while(!LCD.Touch(&x, &y));
+        ddrY = RPS.Y();
+    }
+
     // Prompts user to press LCD to start
     LCD.Clear(WHITE);
     LCD.SetFontColor(BLACK);
     LCD.WriteLine("Press to start.");
 
     // Waits for user to press LCD
-    float x, y;
     while(!LCD.Touch(&x, &y));
 
     // Waits for start light or timeout
@@ -80,6 +95,8 @@ void startRun(){
 
     // Recalibrates initial heading
     checkHeading(315);
+
+    return ddrY;
 }
 
 void dropToken(){
@@ -99,16 +116,6 @@ void dropToken(){
 void playDDR(){
     // Retrieves light color (turning and scanning if necessary)
     LightColor color = detectColor();
-//    int angle = 0;
-//    float startTime = TimeNow();
-//    while(color == NoLight && (TimeNow() - startTime) < 1.0){
-//        turn(TURN_MOTOR_PERCENT, RIGHT, 1.0);
-//        color = detectColor();
-//        angle++;
-//    }
-
-//    // Turns back for consistency
-//    turn(TURN_MOTOR_PERCENT, LEFT, angle);
 
     // Logic for red and blue lights
     if (color == RedLight) {
@@ -117,16 +124,12 @@ void playDDR(){
 
         // Navigates to red button
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.0);
-        setBreakpoint(11);
         checkHeading(180);
-        turn(TURN_MOTOR_PERCENT, RIGHT, 90);
-        setBreakpoint(12);
+        driveArcDistance(FAST_MOTOR_PERCENT, -SLOW_MOTOR_PERCENT, FORWARD, 6.0);
         checkHeading(90);
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
-        setBreakpoint(13);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.25);
         checkHeading(90);
         turn(TURN_MOTOR_PERCENT, LEFT, 90);
-        setBreakpoint(14);
         checkHeading(180);
 
         // Presses red button
@@ -160,7 +163,7 @@ void playDDR(){
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 7.5);
 
         // Turns toward final button
-        driveArcDistance(FAST_MOTOR_PERCENT+3.0, -DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
+        driveArcDistance(FAST_MOTOR_PERCENT, -SLOW_MOTOR_PERCENT, FORWARD, 6.0);
         checkHeading(90);
 
         // Drives forward to match red button

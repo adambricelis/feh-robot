@@ -10,17 +10,7 @@
 int main(void)
 {
     // Competition run
-    startRun();
-
-    //    // Drives to DDR
-    //    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 11.0);
-    //    turn(TURN_MOTOR_PERCENT, RIGHT, 96);
-    //    checkHeading(235);
-    //    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 9.1);
-    //    Sleep(0.25);
-
-    //    // Plays Dance Dance Robot
-    //    playDDR();
+    float ddrY = startRun();
 
     // Drives to pinball ramp
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.0);
@@ -36,10 +26,10 @@ int main(void)
 
     // Drives to token machine
     turn(TURN_MOTOR_PERCENT, RIGHT, 105);
-    checkHeading(125);
+    checkHeading(128);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
-    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 10.5);
-    turn(TURN_MOTOR_PERCENT, LEFT, 35);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 11.0);
+    turn(TURN_MOTOR_PERCENT, LEFT, 30);
     checkHeading(180);
     driveStraightTime(40.0, FORWARD, 0.75);
 
@@ -58,13 +48,13 @@ int main(void)
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.0);
     checkHeading(90);
 
-    // Drives to foosball corner
+    // Lines up with stairs of foosball ramp
     turn(TURN_MOTOR_PERCENT, LEFT, 89);
-
-    //driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 1.75); //this value keeps changing daily
     checkHeading(180);
-    driveStraightTime(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
-    driveStraightDistance(FAST_MOTOR_PERCENT, BACKWARD, 5.0);
+    driveStraightTime(SLOW_MOTOR_PERCENT, FORWARD, 2.5);
+
+    // Drives to foosball counters
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 6.25);
     driveArcDistance(FAST_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 8.0);
     turn(TURN_MOTOR_PERCENT, RIGHT, 130);
     driveStraightTime(40.0, BACKWARD, 0.6);
@@ -94,8 +84,8 @@ int main(void)
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.5);
     turn(TURN_MOTOR_PERCENT, RIGHT, 90);
     checkHeading(180);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 2.15);
-    setBreakpoint(0);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 1.0);
+    checkLocationY(ddrY);
 
     // Plays Dance Dance Robot
     playDDR();
