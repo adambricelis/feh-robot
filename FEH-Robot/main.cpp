@@ -29,7 +29,7 @@ int main(void)
     checkHeading(128);
     driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 5.0);
     driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 12.0);
-    turn(TURN_MOTOR_PERCENT, LEFT, 25);
+    turn(TURN_MOTOR_PERCENT, LEFT, 27.5);
     checkHeading(180);
     driveStraightTime(40.0, FORWARD, 0.5);
 
@@ -75,7 +75,7 @@ int main(void)
 
     // Drives down pinball ramp
     driveArcDistance(RAMP_MOTOR_PERCENT + 6.0, RAMP_MOTOR_PERCENT, BACKWARD, 15.5);
-    driveArcDistance(SLOW_MOTOR_PERCENT, DEFAULT_MOTOR_PERCENT, BACKWARD, 16.5);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT+5.0, FAST_MOTOR_PERCENT, BACKWARD, 15.0);
 
     // Drives to DDR
     turn(TURN_MOTOR_PERCENT, RIGHT, 70);
@@ -100,4 +100,6 @@ int main(void)
 
     LCD.WriteLine("Done!");
     return 0;
+
+
 }

@@ -84,6 +84,10 @@ float startRun(){
     // Waits for user to press LCD
     while(!LCD.Touch(&x, &y));
 
+    LCD.Clear(BLACK);
+    LCD.SetFontColor(WHITE);
+    LCD.WriteLine("Waiting for starting light.");
+
     // Waits for start light or timeout
     float startTime = TimeNow();
     while(detectColor() != RedLight && (TimeNow() - startTime) < START_TIMEOUT);
@@ -123,7 +127,7 @@ void playDDR(){
         LCD.WriteLine("RED!");
 
         // Navigates to red button
-        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 2.0);
+        driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
         checkHeading(180);
         driveArcDistance(FAST_MOTOR_PERCENT, -SLOW_MOTOR_PERCENT, FORWARD, 6.0);
         checkHeading(90);
@@ -197,7 +201,7 @@ void flipLever(){
 
     // Turn toward claw lever
     driveArcDistance(DEFAULT_MOTOR_PERCENT + 7.5, OFF_MOTOR_PERCENT, FORWARD, 2.5);
-    turn(TURN_MOTOR_PERCENT, RIGHT, 5);
+    //turn(TURN_MOTOR_PERCENT, RIGHT, 3);
 
     // Turn servo to flip claw lever
     moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.15);
