@@ -81,9 +81,12 @@ float startRun(){
     LCD.SetFontColor(BLACK);
     LCD.WriteLine("Press to start.");
 
+    Sleep(1.0);
+
     // Waits for user to press LCD
     while(!LCD.Touch(&x, &y));
 
+    // Prompt states that robot is waiting for start light
     LCD.Clear(BLACK);
     LCD.SetFontColor(WHITE);
     LCD.WriteLine("Waiting for starting light.");
@@ -123,8 +126,9 @@ void playDDR(){
 
     // Logic for red and blue lights
     if (color == RedLight) {
-        // Prints color detected
-        LCD.WriteLine("RED!");
+        // Change screen color to color detected
+        LCD.Clear(RED);
+        LCD.SetFontColor(WHITE);
 
         // Navigates to red button
         driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 3.0);
@@ -152,7 +156,9 @@ void playDDR(){
     } else {
         // Prints color detected
         if (color == BlueLight) {
-            LCD.WriteLine("BLUE!");
+            // Change screen color to color detected
+            LCD.Clear(BLUE);
+            LCD.SetFontColor(WHITE);
         } else {
             LCD.WriteLine("Fatal error in playDDR().");
         }
@@ -175,6 +181,10 @@ void playDDR(){
 
     // Consistent ending angle
     checkHeading(90);
+
+    // Change screen color to color detected
+    LCD.Clear(BLACK);
+    LCD.SetFontColor(WHITE);
 }
 
 void slideFoosball(){
