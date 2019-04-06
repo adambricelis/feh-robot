@@ -211,7 +211,7 @@ void flipLever(){
 
     // Turn toward claw lever
     driveArcDistance(DEFAULT_MOTOR_PERCENT + 7.5, OFF_MOTOR_PERCENT, FORWARD, 2.5);
-    //turn(TURN_MOTOR_PERCENT, RIGHT, 3);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 5);
 
     // Turn servo to flip claw lever
     moveFrontServoArm(FAST_MOTOR_PERCENT, DOWN, 1.15);
@@ -228,5 +228,5 @@ void flipLever(){
     backServo.SetDegree(0);
 
     // Turn robot to avoid un-flipping the claw lever
-    turn(TURN_MOTOR_PERCENT, RIGHT, 30);
+    turn(TURN_MOTOR_PERCENT, RIGHT, 25);
 }
