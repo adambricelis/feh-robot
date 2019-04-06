@@ -75,7 +75,7 @@ int main(void)
 
     // Drives down pinball ramp
     driveArcDistance(RAMP_MOTOR_PERCENT + 6.0, RAMP_MOTOR_PERCENT, BACKWARD, 15.5);
-    driveArcDistance(DEFAULT_MOTOR_PERCENT + 5.0, FAST_MOTOR_PERCENT, BACKWARD, 17.5);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT + 5.0, FAST_MOTOR_PERCENT, BACKWARD, 16.75);
 
     // Drives to DDR
     turn(TURN_MOTOR_PERCENT, RIGHT, 70);
