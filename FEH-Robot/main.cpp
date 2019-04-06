@@ -25,9 +25,9 @@ int main(void)
     driveArcDistance(RAMP_MOTOR_PERCENT, SLOW_MOTOR_PERCENT, BACKWARD, 13.0);
 
     // Drives to token machine
-    turn(TURN_MOTOR_PERCENT, RIGHT, 110); // 105
+    turn(TURN_MOTOR_PERCENT, RIGHT, 110);
     checkHeading(128);
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.75); // 5.5
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, FORWARD, 4.75);
     driveArcDistance(DEFAULT_MOTOR_PERCENT, FAST_MOTOR_PERCENT, FORWARD, 12.0);
     turn(TURN_MOTOR_PERCENT, LEFT, 27.5);
     checkHeading(180);
@@ -69,13 +69,13 @@ int main(void)
     flipLever();
 
     // Drives back to pinball ramp
-    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 6.75);
+    driveStraightDistance(DEFAULT_MOTOR_PERCENT, BACKWARD, 6.25);
     driveArcDistance(SLOW_MOTOR_PERCENT, FAST_MOTOR_PERCENT, BACKWARD, 13.0);
     checkHeading(0);
 
     // Drives down pinball ramp
     driveArcDistance(RAMP_MOTOR_PERCENT + 6.0, RAMP_MOTOR_PERCENT, BACKWARD, 15.5);
-    driveArcDistance(DEFAULT_MOTOR_PERCENT+5.0, FAST_MOTOR_PERCENT, BACKWARD, 16.0);
+    driveArcDistance(DEFAULT_MOTOR_PERCENT + 5.0, FAST_MOTOR_PERCENT, BACKWARD, 16.0);
 
     // Drives to DDR
     turn(TURN_MOTOR_PERCENT, RIGHT, 70);
